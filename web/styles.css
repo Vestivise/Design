@@ -1,0 +1,267 @@
+/*
+
+    1.0 SETTINGS
+        1.1 CLASSES
+        1.2 FORMS
+    2.0 LOGIN & REGISTER
+    9.0 ANIMATIONS
+
+*/
+
+/*
+
+    RED: #f43e54
+         rgb(244,62,83)
+
+    TUR: #009999
+         rgb(0,153,153)
+
+*/
+
+/*  1.0 SETTINGS  */
+
+*,*:before,*:after{
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box
+    }
+
+@font-face{
+    font-family:"Graphik";
+    font-weight:400;
+    src:url('fonts/Graphik-Regular.woff2') format('woff2'),
+        url('fonts/Graphik-Regular.woff') format('woff')
+    }
+
+@font-face{
+    font-family:"Graphik";
+    font-weight:500;
+    src:url('fonts/Graphik-Medium.woff2') format('woff2'),
+        url('fonts/Graphik-Medium.woff') format('woff')
+    }
+
+@font-face{
+    font-family:"Graphik";
+    font-weight:500;
+    src:url('fonts/Graphik-Bold.woff2') format('woff2'),
+        url('fonts/Graphik-Bold.woff') format('woff')
+    }
+
+html{
+    height:100%;
+    background:#fff
+    }
+
+body{
+    position:relative;
+    height:100%;
+    margin:0;
+    padding:.1px 0 0;
+    font:14px/1em "Graphik",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:subpixel-antialiased
+    }
+
+img{
+    display:block;
+    max-width:100%;
+    height:auto !important;
+    margin:0
+    }
+
+h1,h2,h3,h4,h5{
+    margin:0;
+    font:700 14px/1em "Graphik",Helvetica,Arial,sans-serif;
+    }
+
+a{
+    text-decoration:none;
+    color:#8b7355
+    }
+
+input,textarea,select,button{
+    padding:0;
+    background:transparent;
+    border:0;
+    border-radius:0;
+    outline:none;
+    -webkit-appearance:none
+    }
+
+    /*  1.1 CLASSES  */
+
+    .width{
+        width:90%;
+        }
+
+    .width.w-s{
+        max-width:360px
+        }
+
+    .center{
+        opacity:0
+        }
+
+    .center.center_margin{
+        margin:120px auto
+        }
+
+    .center.center_absolute{
+        position:absolute;
+        top:45%;
+        left:50%;
+        margin:30px auto 0;// take into consideration of the logo height
+        -webkit-transform:translate(-50%,-50%);
+        transform:translate(-50%,-50%)
+        }
+
+    .cta{
+        position:relative;
+        display:inline-block;
+        vertical-align:top;
+        top:0;
+        height:45px;
+        padding:0 30px;
+        overflow:hidden;
+        text-align:center;
+        letter-spacing:.05em;
+        font:16px/46px "Graphik",Helvetica,Arial,sans-serif;
+        color:#fff;
+        background:#f76576;
+        border:none;
+        box-shadow:none;
+        outline:none;
+        cursor:pointer;
+        transition:.3s
+        }
+
+    .cta:hover{
+        opacity:.8
+        }
+
+    .cta.c-red{
+        background:#f76576
+        }
+
+    .cta.c-full{
+        width:100%
+        }
+
+    /*  1.1 CLASSES  */
+
+    /*  1.2 FORMS  */
+
+    input,textarea,select,button{
+        padding:0;
+        background:transparent;
+        border:0;
+        border-radius:0;
+        outline:none;
+        -webkit-appearance:none
+        }
+
+    .form img{
+        display:block;
+        max-width:200px;
+        margin:0 auto 60px
+        }
+
+    .field{
+        position:relative;
+        margin:0 0 10px
+        }
+
+    .field label{
+        position:absolute;
+        width:100%;
+        top:0;
+        left:0;
+        padding:0 15px;
+        font:16px/47px "Graphik",Helvetica,Arial,sans-serif;
+        color:#999;
+        pointer-events:none
+        }
+
+    .field input,
+    .field select{
+        width:100%;
+        height:45px;
+        padding:0 15px;
+        text-transform:lowercase;
+        font:16px/45px "Graphik",Helvetica,Arial,sans-serif;
+        color:#000;
+        background:#fff
+        }
+
+    .field textarea{
+        width:100%;
+        max-width:100%;
+        padding:7.5px 15px;
+        font:16px/2em "Circular",Helvetica Neue,Helvetica,Arial,sans-serif
+        }
+
+    .field-subtext{
+        margin:30px 0 0;
+        text-align:center;
+        letter-spacing:.05em;
+        font:12px/1.5em "Circular",Helvetica Neue,Helvetica,Arial,sans-serif;
+        color:#fff;
+        opacity:.6
+        }
+
+    .field-subtext a,
+    .field-subtext button{
+        letter-spacing:.05em;
+        font:12px/1.5em "Circular",Helvetica Neue,Helvetica,Arial,sans-serif;
+        color:#fff
+        }
+
+    /*  1.2 FORMS - END  */
+
+/*  1.0 SETTINGS - END  */
+
+/*  2.0 LOGIN & REGISTER  */
+
+    #page-login{
+        background:#f43e54
+        }
+
+    #login-container .cta{
+        margin:20px 0 0
+        }
+
+/*  2.0 LOGIN & REGISTER - END  */
+
+/*  9.0 ANIMATION  */
+
+@-webkit-keyframes fadein{
+    0%{
+        opacity:0
+    }
+    100%{
+        opacity:1
+    }
+}
+
+@keyframes fadein{
+    0%{
+        opacity:0
+    }
+    100%{
+        opacity:1
+    }
+}
+
+.css_fadein{
+    opacity:1;
+    // pointer-events:auto;
+    -webkit-animation:fadein .6s both;
+    animation:fadein .6s both
+    }
+
+/*  9.0  ANIMATION - END  */
+
+/*  10.0  RESPONSIVE  */
+
+@import url("responsive.css");
+
+/*  10.0  RESPONSIVE  */
