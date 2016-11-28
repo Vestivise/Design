@@ -1,4 +1,7 @@
-var	body = $('body')
+var	html = $('html'),
+	body = $('body'),
+	header = $('#header'),
+	header_logo = header.find('#logo');
 
 function global_var(){
 	window_width = $(window).width(),
@@ -49,19 +52,53 @@ function center_content(){
 }
 center_content();
 
+function scroll_to(div){
+	$("html,body").animate({
+  		scrollTop:$(div).offset().top
+	},600)
+}
+
+/*  HEADER  */
+
+function header_logo_click(event){
+	if(body.is('#page-dashboard')){
+		event.preventDefault();
+		scroll_to('body');
+	}
+}
+header_logo.click(header_logo_click)
+
+/*  HEADER - END  */
+
 /*  DASHBOARD  */
 
 function employee_init(){
-	var employee_listing = $('#employee-listing');
+	var employee_listing = $('#employee-listing'),
+		employee_add = $('#employee_add'),
+		employee_add_form = employee_add.find('#employee_add_form')
+
 	if(employee_listing.find('ul').length > 10){
 		employee_listing.addClass('overflow');
 	}
 	employee_listing.find('#employee-listing-more').click(function(){
 		employee_listing.css('max-height','none').removeClass('overflow')
 	})
-	$('#employee-search-submit').click(function(){
-		
+	$('#employee-add').click(function(){
+		employee_add.show(function(){
+			$(document).bind('click',function(e){
+				if(html.hasClass('employee_add_open') && !employee_add_form.is(e.target) && employee_add_form.has(e.target).length === 0){
+					setTimeout(function(){
+						html.removeClass('employee_add_open')
+					},20);
+					$(document).unbind('click');
+				}
+			});
+		});
+		setTimeout(function(){
+			html.addClass('employee_add_open');
+		},10)
 	})
+
 }
 employee_init()
 

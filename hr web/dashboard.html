@@ -19,22 +19,22 @@
 <body id="page-dashboard">
 
 <header id="header">
-	<div id="logo">
+	<a id="logo" href="/">
 		<img src="img/logo-symbol.png">
-	</div>
+	</a>
 </header>
 
 <main id="container" class="width w-m">
 	<div id="employees">
 		<div id="employee-head">
 			<div id="employee-search">
-				<div class="field bg">
+				<div class="field">
 					<label for="employee-search-input">Search employee by name</label>
 					<input type="text" id="employee-search-input">
 				</div>
 				<input type="submit" id="employee-search-submit" value="Search">
 			</div>
-			<button class="cta c-tur">+ Add User</button>
+			<button id="employee-add" class="cta c-tur">+ Add User</button>
 		</div>
 		<div id="employee-listing" class="bg">
 			<ul id="listing-head">
@@ -125,6 +125,34 @@
 		<a href="/" class="cta-inline">Payment Portal</a>
 	</div>
 </main>
+
+<div id="employee_add">
+	<button id="employee_add_close">
+		<hr><hr>
+	</button>
+	<form id="employee_add_form" class="form bg">
+		<h2>Add User</h2>
+		<div class="field">
+			<label for="add_fullname">Full Name</label>
+			<input type="text" id="add_fullname">
+		</div>
+		<div class="field">
+			<label for="add_password">Password</label>
+			<input type="password" id="add_password">
+		</div>
+		<div class="field">
+			<label for="add_password_confirm">Confirm Password</label>
+			<input type="password" id="add_password_confirm">
+		</div>
+		<div class="field">
+			<label for="add_email">Email</label>
+			<input type="password" id="add_email">
+		</div>
+		<p class="field-subtext">Login info and instructions will be sent to the users email.</p>
+		<input type="submit" class="cta c-full c-red" value="Login">
+	</form>
+	</form>
+</div>
 
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>

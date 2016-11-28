@@ -4,6 +4,10 @@
         1.1 CLASSES
         1.2 FORMS
     2.0 LOGIN & REGISTER
+    3.0 HEADER
+    4.0 DASHBOARD
+        4.1 DASHBOARD DATA
+        4.2 DASHBOARD ADD USER
     9.0 ANIMATIONS
 
 */
@@ -42,7 +46,7 @@
 
 @font-face{
     font-family:"Graphik";
-    font-weight:500;
+    font-weight:700;
     src:url('fonts/Graphik-Bold.woff2') format('woff2'),
         url('fonts/Graphik-Bold.woff') format('woff')
     }
@@ -54,9 +58,9 @@ html{
 
 body{
     position:relative;
-    height:100%;
+    min-height:100%;
     margin:0;
-    padding:.1px 0 0;
+    padding:.1px 0;
     font:14px/1em "Graphik",Helvetica,Arial,sans-serif;
     -webkit-font-smoothing:subpixel-antialiased;
     background:#fcfcfc
@@ -70,8 +74,15 @@ img{
     }
 
 h1,h2,h3,h4,h5{
-    margin:0;
-    font:700 14px/1em "Graphik",Helvetica,Arial,sans-serif;
+    margin:-8px 0;
+    font:32px/1.5em "Graphik",Helvetica,Arial,sans-serif;
+    color:#555
+    }
+
+p,ol,ul{
+    margin:22px 0;
+    font:16px/2em "Graphik",Helvetica,Arial,sans-serif;
+    color:#999
     }
 
 a{
@@ -87,6 +98,11 @@ input,textarea,select,button{
     outline:none;
     -webkit-appearance:none
     }
+
+input[type="submit"],
+button{
+    cursor:pointer
+    }   
 
     /*  1.1 CLASSES  */
 
@@ -108,11 +124,11 @@ input,textarea,select,button{
         opacity:0
         }
 
-    .center.center_margin{
+    .center_margin{
         margin:120px auto
         }
 
-    .center.center_absolute{
+    .center_absolute{
         position:absolute;
         top:45%;
         left:50%;
@@ -165,6 +181,33 @@ input,textarea,select,button{
         width:100%
         }
 
+    .cta-inline{
+        color:#009999
+        }
+
+    .cta-inline:after{
+        content:"";
+        display:inline-block;
+        width:14px;
+        height:14px;
+        vertical-align:-1px;
+        background:url(../img/icon-arrow-right.svg) center/12px no-repeat;
+        margin:0 0 0 9px
+        }
+
+    .cr-5{
+        color:#555
+        }
+
+    .cr-9{
+        color:#999
+        }
+
+    .bg{
+        background:#fff;
+        box-shadow:0 0 0 1px #eee
+        }
+
     /*  1.1 CLASSES  */
 
     /*  1.2 FORMS  */
@@ -182,6 +225,11 @@ input,textarea,select,button{
         display:block;
         max-width:200px;
         margin:0 auto 60px
+        }
+
+    .form h2,
+    .form h3{
+        margin:-8px 0 22px
         }
 
     .field{
@@ -208,7 +256,8 @@ input,textarea,select,button{
         text-transform:lowercase;
         font:16px/45px "Graphik",Helvetica,Arial,sans-serif;
         color:#000;
-        background:#fff
+        background:#fff;
+        box-shadow:0 0 0 1px #eee
         }
 
     .field textarea{
@@ -234,6 +283,10 @@ input,textarea,select,button{
         color:#fff
         }
 
+    .field-subtext{
+        color:#999
+        }
+
     /*  1.2 FORMS - END  */
 
 /*  1.0 SETTINGS - END  */
@@ -250,6 +303,264 @@ input,textarea,select,button{
         }
 
 /*  2.0 LOGIN & REGISTER - END  */
+
+/*  3.0 HEADER  */
+
+#header{
+    position:fixed;
+    top:45px;
+    left:45px;
+    z-index:100
+    }
+
+#header #logo{
+    position:relative;
+    display:block;
+    width:75px;
+    height:75px;
+    background:#f43e54;
+    cursor:pointer
+    }
+
+#header #logo img{
+    position:absolute;
+    width:40px;
+    top:50%;
+    left:50%;
+    -webkit-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%)
+    }
+
+#header #navigation{
+
+    }
+
+/*  3.0 HEADER - END  */
+
+#container{
+    margin:90px auto
+    }
+
+/*  4.0 DASHBOARD  */
+
+    /*  4.1 DASHBOARD DATA  */
+
+    #employee-head{
+        margin:0 0 30px
+        }
+
+    #employee-head #employee-search{
+        display:inline-block
+        }
+
+    #employee-head .field{
+        display:inline-block;
+        vertical-align:top;
+        margin:0 10px 0 0
+        }
+
+    #employee-head #employee-search-input{
+        width:300px
+        }
+
+    #employee-head #employee-search-submit{
+        display:inline-block;
+        vertical-align:top;
+        width:45px;
+        height:45px;
+        font-size:0;
+        background:#dddddd url(../img/icon-search.png) center/20px no-repeat;
+        }
+
+    #employee-head .cta{
+        float:right
+        }
+
+    #employee-listing{
+        position:relative;
+        max-height:510px;
+        overflow:hidden;
+        padding:30px
+        }
+
+    #employee-listing ul{
+        display:block;
+        display:-webkit-flex;
+        display:flex;
+        flex-wrap:wrap;
+        -webkit-flex-wrap:wrap;
+        margin:0;
+        padding:0;
+        list-style:none
+        }
+
+    #employee-listing ul:nth-of-type(even){
+        background:#fafafa
+        }
+
+    #employee-listing ul li{
+        display:inline-block;
+        padding:0 15px;
+        font:14px/45px "Graphik",Helvetica,Arial,sans-serif;
+        color:#555
+        }
+
+    #employee-listing ul li:nth-of-type(1),
+    #employee-listing ul li:nth-of-type(2){
+        width:40%
+        }
+
+    #employee-listing ul li:nth-of-type(3){
+        width:20%;
+        text-align:right
+        }
+
+    #employee-listing #listing-head li{
+        text-transform:uppercase;
+        letter-spacing:.15em;
+        font:500 14px/45px "Graphik",Helvetica,Arial,sans-serif;
+        color:#111
+        }
+
+    #employee-listing #employee-listing-more{
+        display:none
+        }
+
+    #employee-listing.overflow #employee-listing-more{
+        display:block;
+        position:absolute;
+        width:100%;
+        height:60px;
+        left:0;
+        bottom:0;
+        padding:15px 30px;
+        background:#fff;
+        z-index:10
+        }
+
+    #employee-listing.overflow #employee-listing-more:before{
+        content:"";
+        position:absolute;
+        width:100%;
+        height:90px;
+        bottom:60px;
+        background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%)
+        }
+
+    #employee-listing.overflow #employee-listing-more button{
+        font:14px/1em "Graphik",Helvetica,Arial,sans-serif;
+        color:#009999
+        }
+
+    #participant{
+        margin:60px 0 0
+        }
+
+    #participant h2{
+        margin:-8px 0 22px
+        }
+
+    #participant-info{
+        padding:30px;
+        font-size:0
+        }
+
+    #participant-info .number{
+        display:inline-block;
+        vertical-align:top;
+        width:calc(40% - 30px);
+        margin:0 60px 0 0
+        }
+
+    #participant-info .number:last-of-type{
+        margin:0
+        }
+
+    #participant-info .number h3{
+        font:120px/1em "Graphik",Helvetica,Arial,sans-serif;
+        color:#009999
+        }
+
+    #participant-info .number p{
+        margin:22px 0 0
+        }
+
+    #payment-info{
+        margin:60px 0 0;
+        padding:52px 0 0;
+        border-top:1px solid #eee
+        }
+
+    /*  4.1 DASHBOARD DATA  */
+
+    /*  4.2 DASHBOARD ADD USER  */
+
+    #employee_add{
+        position:fixed;
+        width:100%;
+        height:100%;
+        top:0;
+        left:0;
+        background:rgba(0,153,153,.6);
+        opacity:0;
+        pointer-events:none;
+        transition:.3s;
+        z-index:200
+        }
+
+        html.employee_add_open{
+            overflow:hidden
+            }
+
+        html.employee_add_open #employee_add{
+            opacity:1;
+            pointer-events:auto
+            }
+
+    #employee_add #employee_add_close{
+        position:fixed;
+        top:30px;
+        right:30px;
+        width:45px;
+        height:45px;
+        }
+
+    #employee_add #employee_add_close hr{
+        position:absolute;
+        width:45px;
+        height:1px;
+        top:50%;
+        left:50%;
+        -webkit-transform:translate(-50%,-50%) rotate(45deg);
+        transform:translate(-50%,-50%) rotate(45deg);
+        margin:0;
+        background:#fff;
+        border:none;
+        outline:none
+        }
+
+    #employee_add #employee_add_close hr:nth-of-type(2){
+        -webkit-transform:translate(-50%,-50%) rotate(-45deg);
+        transform:translate(-50%,-50%) rotate(-45deg)
+        }
+
+    #employee_add #employee_add_form{
+        position:fixed;
+        max-width:450px;
+        top:50%;
+        left:50%;
+        -webkit-transform:translate(-50%,-50%);
+        transform:translate(-50%,-50%);
+        padding:30px
+        }
+
+    #employee_add #employee_add_form .field-subtext{
+        margin:10px 0 30px
+        }
+
+    /*  4.2 DASHBOARD ADD USER  */
+
+/*  4.0 DASHBOARD - END  */
 
 /*  9.0 ANIMATION  */
 

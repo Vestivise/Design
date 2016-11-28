@@ -58,6 +58,7 @@ html{
 
 body{
     position:relative;
+    min-height:100%;
     margin:0;
     padding:.1px 0;
     font:14px/1em "Graphik",Helvetica,Arial,sans-serif;
@@ -123,11 +124,11 @@ button{
         opacity:0
         }
 
-    .center.center_margin{
+    .center_margin{
         margin:120px auto
         }
 
-    .center.center_absolute{
+    .center_absolute{
         position:absolute;
         top:45%;
         left:50%;
@@ -226,6 +227,11 @@ button{
         margin:0 auto 60px
         }
 
+    .form h2,
+    .form h3{
+        margin:-8px 0 22px
+        }
+
     .field{
         position:relative;
         margin:0 0 10px
@@ -250,7 +256,8 @@ button{
         text-transform:lowercase;
         font:16px/45px "Graphik",Helvetica,Arial,sans-serif;
         color:#000;
-        background:#fff
+        background:#fff;
+        box-shadow:0 0 0 1px #eee
         }
 
     .field textarea{
@@ -274,6 +281,10 @@ button{
         letter-spacing:.05em;
         font:12px/1.5em "Circular",Helvetica Neue,Helvetica,Arial,sans-serif;
         color:#fff
+        }
+
+    .field-subtext{
+        color:#999
         }
 
     /*  1.2 FORMS - END  */
@@ -304,9 +315,11 @@ button{
 
 #header #logo{
     position:relative;
+    display:block;
     width:75px;
     height:75px;
-    background:#f43e54
+    background:#f43e54;
+    cursor:pointer
     }
 
 #header #logo img{
@@ -481,6 +494,69 @@ button{
     /*  4.1 DASHBOARD DATA  */
 
     /*  4.2 DASHBOARD ADD USER  */
+
+    #employee_add{
+        position:fixed;
+        width:100%;
+        height:100%;
+        top:0;
+        left:0;
+        background:rgba(0,153,153,.6);
+        opacity:0;
+        pointer-events:none;
+        transition:.3s;
+        z-index:200
+        }
+
+        html.employee_add_open{
+            overflow:hidden
+            }
+
+        html.employee_add_open #employee_add{
+            opacity:1;
+            pointer-events:auto
+            }
+
+    #employee_add #employee_add_close{
+        position:fixed;
+        top:30px;
+        right:30px;
+        width:45px;
+        height:45px;
+        }
+
+    #employee_add #employee_add_close hr{
+        position:absolute;
+        width:45px;
+        height:1px;
+        top:50%;
+        left:50%;
+        -webkit-transform:translate(-50%,-50%) rotate(45deg);
+        transform:translate(-50%,-50%) rotate(45deg);
+        margin:0;
+        background:#fff;
+        border:none;
+        outline:none
+        }
+
+    #employee_add #employee_add_close hr:nth-of-type(2){
+        -webkit-transform:translate(-50%,-50%) rotate(-45deg);
+        transform:translate(-50%,-50%) rotate(-45deg)
+        }
+
+    #employee_add #employee_add_form{
+        position:fixed;
+        max-width:450px;
+        top:50%;
+        left:50%;
+        -webkit-transform:translate(-50%,-50%);
+        transform:translate(-50%,-50%);
+        padding:30px
+        }
+
+    #employee_add #employee_add_form .field-subtext{
+        margin:10px 0 30px
+        }
 
     /*  4.2 DASHBOARD ADD USER  */
 
