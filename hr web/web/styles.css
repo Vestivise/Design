@@ -1,0 +1,522 @@
+/*
+
+    1.0 SETTINGS
+        1.1 CLASSES
+        1.2 FORMS
+    2.0 LOGIN & REGISTER
+    3.0 HEADER
+    4.0 DASHBOARD
+        4.1 DASHBOARD DATA
+        4.2 DASHBOARD ADD USER
+    9.0 ANIMATIONS
+
+*/
+
+/*
+
+    RED: #f43e54
+         rgb(244,62,83)
+
+    TUR: #009999
+         rgb(0,153,153)
+
+*/
+
+/*  1.0 SETTINGS  */
+
+*,*:before,*:after{
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box
+    }
+
+@font-face{
+    font-family:"Graphik";
+    font-weight:400;
+    src:url('fonts/Graphik-Regular.woff2') format('woff2'),
+        url('fonts/Graphik-Regular.woff') format('woff')
+    }
+
+@font-face{
+    font-family:"Graphik";
+    font-weight:500;
+    src:url('fonts/Graphik-Medium.woff2') format('woff2'),
+        url('fonts/Graphik-Medium.woff') format('woff')
+    }
+
+@font-face{
+    font-family:"Graphik";
+    font-weight:700;
+    src:url('fonts/Graphik-Bold.woff2') format('woff2'),
+        url('fonts/Graphik-Bold.woff') format('woff')
+    }
+
+html{
+    height:100%;
+    background:#fff
+    }
+
+body{
+    position:relative;
+    margin:0;
+    padding:.1px 0;
+    font:14px/1em "Graphik",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:subpixel-antialiased;
+    background:#fcfcfc
+    }
+
+img{
+    display:block;
+    max-width:100%;
+    height:auto !important;
+    margin:0
+    }
+
+h1,h2,h3,h4,h5{
+    margin:-8px 0;
+    font:32px/1.5em "Graphik",Helvetica,Arial,sans-serif;
+    color:#555
+    }
+
+p,ol,ul{
+    margin:22px 0;
+    font:16px/2em "Graphik",Helvetica,Arial,sans-serif;
+    color:#999
+    }
+
+a{
+    text-decoration:none;
+    color:#8b7355
+    }
+
+input,textarea,select,button{
+    padding:0;
+    background:transparent;
+    border:0;
+    border-radius:0;
+    outline:none;
+    -webkit-appearance:none
+    }
+
+input[type="submit"],
+button{
+    cursor:pointer
+    }   
+
+    /*  1.1 CLASSES  */
+
+    .width{
+        width:90%;
+        margin-left:auto;
+        margin-right:auto
+        }
+
+    .width.w-s{
+        max-width:360px
+        }
+
+    .width.w-m{
+        max-width:1000px
+        }
+
+    .center{
+        opacity:0
+        }
+
+    .center.center_margin{
+        margin:120px auto
+        }
+
+    .center.center_absolute{
+        position:absolute;
+        top:45%;
+        left:50%;
+        margin:30px auto 0;// take into consideration of the logo height
+        -webkit-transform:translate(-50%,-50%);
+        transform:translate(-50%,-50%)
+        }
+
+    .cta{
+        position:relative;
+        display:inline-block;
+        vertical-align:top;
+        top:0;
+        height:45px;
+        padding:0 30px;
+        overflow:hidden;
+        text-align:center;
+        letter-spacing:.05em;
+        font:16px/46px "Graphik",Helvetica,Arial,sans-serif;
+        color:#fff;
+        background:#009999;
+        border:none;
+        box-shadow:none;
+        outline:none;
+        cursor:pointer;
+        transition:.3s
+        }
+
+    .cta:hover{
+        opacity:.8
+        }
+
+    .cta.c-red{
+        background:#f76576
+        }
+
+    .cta.c-red-light{
+        background:#ff6666
+        }
+
+    .cta.c-tur{
+        background:#009999
+        }
+
+    .cta.c-tur-light{
+        background:#66cccc
+        }
+
+    .cta.c-full{
+        width:100%
+        }
+
+    .cta-inline{
+        color:#009999
+        }
+
+    .cta-inline:after{
+        content:"";
+        display:inline-block;
+        width:14px;
+        height:14px;
+        vertical-align:-1px;
+        background:url(../img/icon-arrow-right.svg) center/12px no-repeat;
+        margin:0 0 0 9px
+        }
+
+    .cr-5{
+        color:#555
+        }
+
+    .cr-9{
+        color:#999
+        }
+
+    .bg{
+        background:#fff;
+        box-shadow:0 0 0 1px #eee
+        }
+
+    /*  1.1 CLASSES  */
+
+    /*  1.2 FORMS  */
+
+    input,textarea,select,button{
+        padding:0;
+        background:transparent;
+        border:0;
+        border-radius:0;
+        outline:none;
+        -webkit-appearance:none
+        }
+
+    .form img{
+        display:block;
+        max-width:200px;
+        margin:0 auto 60px
+        }
+
+    .field{
+        position:relative;
+        margin:0 0 10px
+        }
+
+    .field label{
+        position:absolute;
+        width:100%;
+        top:0;
+        left:0;
+        padding:0 15px;
+        font:16px/47px "Graphik",Helvetica,Arial,sans-serif;
+        color:#999;
+        pointer-events:none
+        }
+
+    .field input,
+    .field select{
+        width:100%;
+        height:45px;
+        padding:0 15px;
+        text-transform:lowercase;
+        font:16px/45px "Graphik",Helvetica,Arial,sans-serif;
+        color:#000;
+        background:#fff
+        }
+
+    .field textarea{
+        width:100%;
+        max-width:100%;
+        padding:7.5px 15px;
+        font:16px/2em "Circular",Helvetica Neue,Helvetica,Arial,sans-serif
+        }
+
+    .field-subtext{
+        margin:30px 0 0;
+        text-align:center;
+        letter-spacing:.05em;
+        font:12px/1.5em "Circular",Helvetica Neue,Helvetica,Arial,sans-serif;
+        color:#fff;
+        opacity:.6
+        }
+
+    .field-subtext a,
+    .field-subtext button{
+        letter-spacing:.05em;
+        font:12px/1.5em "Circular",Helvetica Neue,Helvetica,Arial,sans-serif;
+        color:#fff
+        }
+
+    /*  1.2 FORMS - END  */
+
+/*  1.0 SETTINGS - END  */
+
+/*  2.0 LOGIN & REGISTER  */
+
+    #page-login,
+    #page-recover-password{
+        background:#009999
+        }
+
+    #login-container .cta{
+        margin:20px 0 0
+        }
+
+/*  2.0 LOGIN & REGISTER - END  */
+
+/*  3.0 HEADER  */
+
+#header{
+    position:fixed;
+    top:45px;
+    left:45px;
+    z-index:100
+    }
+
+#header #logo{
+    position:relative;
+    width:75px;
+    height:75px;
+    background:#f43e54
+    }
+
+#header #logo img{
+    position:absolute;
+    width:40px;
+    top:50%;
+    left:50%;
+    -webkit-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%)
+    }
+
+#header #navigation{
+
+    }
+
+/*  3.0 HEADER - END  */
+
+#container{
+    margin:90px auto
+    }
+
+/*  4.0 DASHBOARD  */
+
+    /*  4.1 DASHBOARD DATA  */
+
+    #employee-head{
+        margin:0 0 30px
+        }
+
+    #employee-head #employee-search{
+        display:inline-block
+        }
+
+    #employee-head .field{
+        display:inline-block;
+        vertical-align:top;
+        margin:0 10px 0 0
+        }
+
+    #employee-head #employee-search-input{
+        width:300px
+        }
+
+    #employee-head #employee-search-submit{
+        display:inline-block;
+        vertical-align:top;
+        width:45px;
+        height:45px;
+        font-size:0;
+        background:#dddddd url(../img/icon-search.png) center/20px no-repeat;
+        }
+
+    #employee-head .cta{
+        float:right
+        }
+
+    #employee-listing{
+        position:relative;
+        max-height:510px;
+        overflow:hidden;
+        padding:30px
+        }
+
+    #employee-listing ul{
+        display:block;
+        display:-webkit-flex;
+        display:flex;
+        flex-wrap:wrap;
+        -webkit-flex-wrap:wrap;
+        margin:0;
+        padding:0;
+        list-style:none
+        }
+
+    #employee-listing ul:nth-of-type(even){
+        background:#fafafa
+        }
+
+    #employee-listing ul li{
+        display:inline-block;
+        padding:0 15px;
+        font:14px/45px "Graphik",Helvetica,Arial,sans-serif;
+        color:#555
+        }
+
+    #employee-listing ul li:nth-of-type(1),
+    #employee-listing ul li:nth-of-type(2){
+        width:40%
+        }
+
+    #employee-listing ul li:nth-of-type(3){
+        width:20%;
+        text-align:right
+        }
+
+    #employee-listing #listing-head li{
+        text-transform:uppercase;
+        letter-spacing:.15em;
+        font:500 14px/45px "Graphik",Helvetica,Arial,sans-serif;
+        color:#111
+        }
+
+    #employee-listing #employee-listing-more{
+        display:none
+        }
+
+    #employee-listing.overflow #employee-listing-more{
+        display:block;
+        position:absolute;
+        width:100%;
+        height:60px;
+        left:0;
+        bottom:0;
+        padding:15px 30px;
+        background:#fff;
+        z-index:10
+        }
+
+    #employee-listing.overflow #employee-listing-more:before{
+        content:"";
+        position:absolute;
+        width:100%;
+        height:90px;
+        bottom:60px;
+        background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%)
+        }
+
+    #employee-listing.overflow #employee-listing-more button{
+        font:14px/1em "Graphik",Helvetica,Arial,sans-serif;
+        color:#009999
+        }
+
+    #participant{
+        margin:60px 0 0
+        }
+
+    #participant h2{
+        margin:-8px 0 22px
+        }
+
+    #participant-info{
+        padding:30px;
+        font-size:0
+        }
+
+    #participant-info .number{
+        display:inline-block;
+        vertical-align:top;
+        width:calc(40% - 30px);
+        margin:0 60px 0 0
+        }
+
+    #participant-info .number:last-of-type{
+        margin:0
+        }
+
+    #participant-info .number h3{
+        font:120px/1em "Graphik",Helvetica,Arial,sans-serif;
+        color:#009999
+        }
+
+    #participant-info .number p{
+        margin:22px 0 0
+        }
+
+    #payment-info{
+        margin:60px 0 0;
+        padding:52px 0 0;
+        border-top:1px solid #eee
+        }
+
+    /*  4.1 DASHBOARD DATA  */
+
+    /*  4.2 DASHBOARD ADD USER  */
+
+    /*  4.2 DASHBOARD ADD USER  */
+
+/*  4.0 DASHBOARD - END  */
+
+/*  9.0 ANIMATION  */
+
+@-webkit-keyframes fadein{
+    0%{
+        opacity:0
+    }
+    100%{
+        opacity:1
+    }
+}
+
+@keyframes fadein{
+    0%{
+        opacity:0
+    }
+    100%{
+        opacity:1
+    }
+}
+
+.css_fadein{
+    opacity:1;
+    // pointer-events:auto;
+    -webkit-animation:fadein .6s both;
+    animation:fadein .6s both
+    }
+
+/*  9.0  ANIMATION - END  */
+
+/*  10.0  RESPONSIVE  */
+
+@import url("responsive.css");
+
+/*  10.0  RESPONSIVE  */

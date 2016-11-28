@@ -58,7 +58,8 @@ body{
     margin:0;
     padding:.1px 0 0;
     font:14px/1em "Graphik",Helvetica,Arial,sans-serif;
-    -webkit-font-smoothing:subpixel-antialiased
+    -webkit-font-smoothing:subpixel-antialiased;
+    background:#fcfcfc
     }
 
 img{
@@ -91,10 +92,16 @@ input,textarea,select,button{
 
     .width{
         width:90%;
+        margin-left:auto;
+        margin-right:auto
         }
 
     .width.w-s{
         max-width:360px
+        }
+
+    .width.w-m{
+        max-width:1000px
         }
 
     .center{
@@ -126,7 +133,7 @@ input,textarea,select,button{
         letter-spacing:.05em;
         font:16px/46px "Graphik",Helvetica,Arial,sans-serif;
         color:#fff;
-        background:#f76576;
+        background:#009999;
         border:none;
         box-shadow:none;
         outline:none;
@@ -140,6 +147,18 @@ input,textarea,select,button{
 
     .cta.c-red{
         background:#f76576
+        }
+
+    .cta.c-red-light{
+        background:#ff6666
+        }
+
+    .cta.c-tur{
+        background:#009999
+        }
+
+    .cta.c-tur-light{
+        background:#66cccc
         }
 
     .cta.c-full{
@@ -221,7 +240,8 @@ input,textarea,select,button{
 
 /*  2.0 LOGIN & REGISTER  */
 
-    #page-login{
+    #page-login,
+    #page-recover-password{
         background:#f43e54
         }
 
