@@ -464,6 +464,20 @@ button{
 
 /*  4.0 DASHBOARD  */
 
+	#page-dashboard{
+		background:#099
+		}
+
+    #page-dashboard #participant h2,
+    #page-dashboard #payment-info h2{
+        color:#fff
+        }
+
+    #page-dashboard #participant > p,
+    #page-dashboard #payment-info > p{
+        color:#ddd
+        }
+
     /*  4.1 DASHBOARD DATA  */
 
     #employee-head{
@@ -609,7 +623,7 @@ button{
     #payment-info{
         margin:60px 0 0;
         padding:52px 0 0;
-        border-top:1px solid #eee
+        border-top:1px solid rgba(255,255,255,.3)
         }
 
     /*  4.1 DASHBOARD DATA  */
