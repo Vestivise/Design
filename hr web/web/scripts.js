@@ -68,6 +68,17 @@ function header_logo_click(event){
 }
 header_logo.click(header_logo_click)
 
+function header_scroll(){
+	var scroll_top = $(window).scrollTop();
+	if(scroll_top > 30){
+		html.addClass('scroll')
+	}else{
+		html.removeClass('scroll')
+	}
+}
+header_scroll();
+$(window).scroll(header_scroll)
+
 /*  HEADER - END  */
 
 /*  DASHBOARD  */

@@ -3,8 +3,8 @@
     1.0 SETTINGS
         1.1 CLASSES
         1.2 FORMS
-    2.0 LOGIN & REGISTER
-    3.0 HEADER
+    2.0 HEADER
+    3.0 LOGIN & REGISTER
     4.0 DASHBOARD
         4.1 DASHBOARD DATA
         4.2 DASHBOARD ADD USER
@@ -87,7 +87,8 @@ p,ol,ul{
 
 a{
     text-decoration:none;
-    color:#8b7355
+    color:#8b7355;
+    transition:.3s
     }
 
 input,textarea,select,button{
@@ -166,7 +167,7 @@ button{
         }
 
     .cta.c-red-light{
-        background:#ff6666
+        background:#f76576
         }
 
     .cta.c-tur{
@@ -208,6 +209,13 @@ button{
         box-shadow:0 0 0 1px #eee
         }
 
+    .arrow{
+        display:inline-block;
+        height:12px !important;
+        margin:0 0 0 5px;
+        vertical-align:-1px;
+        }
+
     /*  1.1 CLASSES  */
 
     /*  1.2 FORMS  */
@@ -237,6 +245,20 @@ button{
         margin:0 0 10px
         }
 
+        .field-row{
+            font-size:0
+            }
+
+        .field.half{
+            display:inline-block;
+            width:calc(50% - 5px);
+            margin:0 10px 10px 0
+            }
+
+        .field.half:nth-of-type(2n){
+            margin:0 0 10px
+            }
+
     .field label{
         position:absolute;
         width:100%;
@@ -259,6 +281,32 @@ button{
         background:#fff;
         box-shadow:0 0 0 1px #eee
         }
+
+    .field select{
+        color:#999;
+        background:#fff url(../img/down-arrow.png) right/contain no-repeat
+        }
+
+        .field.error:after{
+            content:"*";
+            position:absolute;
+            top:0;
+            right:15px;
+            font:24px/56px "Graphik",Helvetica,Arial,sans-serif;
+            color:#b55b2a;
+            pointer-events:none
+            }
+
+        .field.error input,
+        .field.error select{
+            background:#fbb;
+            box-shadow:0 0 0 1px #fbb
+            }
+
+        .field.error label,
+        .field.error label{
+            color:#b55b2a
+            }
 
     .field textarea{
         width:100%;
@@ -283,6 +331,12 @@ button{
         color:#fff
         }
 
+    .field-subtext .error{
+        display:none;
+        margin:0 0 10px;
+        color:#fff
+        }
+
     .field-subtext{
         color:#999
         }
@@ -291,20 +345,7 @@ button{
 
 /*  1.0 SETTINGS - END  */
 
-/*  2.0 LOGIN & REGISTER  */
-
-    #page-login,
-    #page-recover-password{
-        background:#009999
-        }
-
-    #login-container .cta{
-        margin:20px 0 0
-        }
-
-/*  2.0 LOGIN & REGISTER - END  */
-
-/*  3.0 HEADER  */
+/*  2.0 HEADER  */
 
 #header{
     position:fixed;
@@ -316,15 +357,16 @@ button{
 #header #logo{
     position:relative;
     display:block;
-    width:75px;
-    height:75px;
+    width:60px;
+    height:60px;
     background:#f43e54;
-    cursor:pointer
+    cursor:pointer;
+    z-index:110
     }
 
 #header #logo img{
     position:absolute;
-    width:40px;
+    width:30px;
     top:50%;
     left:50%;
     -webkit-transform:translate(-50%,-50%);
@@ -332,13 +374,92 @@ button{
     }
 
 #header #navigation{
-
+    position:absolute;
+    top:0;
+    left:0;
+    padding:0 15px 0 75px;
+    white-space:nowrap;
+    font-size:0;
+    background:#fff;
+    box-shadow:0 0 20px 5px transparent;
+    box-shadow:0 0 20px 5px rgba(0,0,0,.1);
+    transition:.15s;
+    z-index:105
     }
 
-/*  3.0 HEADER - END  */
+#header #navigation a{
+    position:relative;
+    display:inline-block;
+    padding:0 15px;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    font:500 12px/60px "Graphik",Helvetica,Arial,sans-serif;
+    color:#111
+    }
+
+#header #navigation #nav-logout{
+    color:#009999
+    }
+
+    html.scroll #header #navigation{
+        pointer-events:none;
+        opacity:0
+        }
+
+    #header:hover #navigation{
+        pointer-events:auto !important;
+        opacity:1 !important
+        }
+
+    html.link_account_notification.scroll #header:after,
+    html.link_account_notification #header #nav-settings:after{
+        content:"";
+        position:absolute;
+        display:block;
+        top:-14px;
+        right:-6px;
+        width:12px;
+        height:12px;
+        margin:10px 0;
+        border-radius:100%;
+        background:#e6a949;
+        pointer-events:none;
+        z-index:110
+        }
+
+    html.link_account_notification #header #nav-settings:after{
+        top:6px;
+        right:8px;
+        width:8px;
+        height:8px
+        }
+
+        html.link_account_notification #header:hover::after{
+            opacity:0;
+            transition:.3s            
+            }
+
+/*  2.0 HEADER - END  */
+
+/*  3.0 LOGIN & REGISTER  */
+
+    #page-login,
+    #page-recover-password{
+        background:#009999
+        }
+
+    #login-container .cta{
+        margin:20px 0 0
+        }
+
+/*  3.0 LOGIN & REGISTER - END  */
 
 #container{
-    margin:90px auto
+    margin:180px auto
+    }
+
+.section{
+    min-height:100vh
     }
 
 /*  4.0 DASHBOARD  */

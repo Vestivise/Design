@@ -20,16 +20,29 @@
 
 <div id="login-container" class="width w-s form center">
 	<img src="img/logo.png" alt="Vestivise">
-	<div class="field">
-		<label for="login-email">Email</label>
-		<input id="login-email" type="email">
-	</div>
-	<div class="field">
-		<label for="login-password">Password</label>
-		<input id="login-password" type="passord">
-	</div>
-	<a class="cta c-full c-red-light" href="#">Login</a>
+	<form id="user-login-form">
+		<div class="field">
+			<label for="login-email">Email</label>
+			<input id="login-email" type="email">
+		</div>
+		<div class="field">
+			<label for="login-password">Password</label>
+			<input id="login-password" type="passord">
+		</div>
+		<input class="cta c-full c-red-light" type="submit" value="login">
+	</form>
 	<div class="field-subtext">
+		<div class="error">Sorry, that password isn't right.</div>
+		<!-- 
+
+			scripts.js -
+
+			if(!submit_success){
+				$('#user-login-form .error').slideDown();
+				error_field.addClass('error');
+			}
+
+		 -->
 		<a href="recover-password.html">Forgot Password? Recover your account.</button>
 	</div>
 </div>

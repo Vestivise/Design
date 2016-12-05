@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>Vestivise</title>
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="">
+<meta property="og:image" content="">
+<meta property="og:title" content="Vestivise">
+<meta property="og:type" content="website">
+<meta property="og:description" content="">
+
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link href="web/styles.css" rel="stylesheet" type="text/css">
+<link href="web/responsive.css" rel="stylesheet" type="text/css">
+</head>
+<body id="page-settings">
+
+<header id="header">
+	<a id="logo" href="/">
+		<img src="img/logo-symbol.png">
+	</a>
+	<nav id="navigation">
+		<a href="settings.html" id="nav-settings">Settings</a>
+		<a href="">Support</a>
+		<a href="" id="nav-logout">Logout</a>
+	</nav>
+</header>
+
+<div id="link_account_linking">
+	<div id="link_account_info" class="bg">
+		<div id="loader"></div>
+		<h2>Dashboard Processing</h2>
+		<p>The dashboard shown immediately following the linkage of an account is a mostly accurate estimation of your holdings. During the next 24 hours, each holding will be confirmed by Vestivise Support for absolute accuracy.</p>
+	</div>
+</div>
+
+<main id="container" class="width w-s">
+	<div id="accounts">
+		<h1>Accounts</h1>
+		<div class="account">
+			<div class="account-head">
+				<h2>Account 1</h2><!-- replace with account name -->
+				<button>Unlink</button><!-- add unlink function -->
+			</div>
+			<!-- correct questions -->
+			<div class="questions correct">
+				<p>What is your mother in-laws middle name?</p>
+				<form>
+					<div class="field">
+						<!-- change label for and input id, so it does not repeat -->
+						<label for="account-1-question-1">Your Answer</label>
+						<input id="account-1-question-1" type="text">
+					</div>
+					<input type="submit" value="">
+				</form>
+			</div>
+			<div class="questions correct">
+				<p>Where did you go for highschool?</p>
+				<form>
+					<div class="field">
+						<label for="account-1-question-1">Your Answer</label>
+						<input id="account-1-question-1" type="text">
+					</div>
+					<input type="submit" value="">
+				</form>
+			</div>
+			<!-- incorrect questions that needs to be answered = .field{display:block} -->
+			<div class="questions incorrect">
+				<p>When is your grandmas birthday?</p>
+				<form>
+					<div class="field">
+						<label for="account-1-question-1">Your Answer</label>
+						<input id="account-1-question-1" type="text">
+					</div>
+					<input type="submit" value="">
+				</form>
+			</div>
+		</div>
+		<div class="account">
+			<div class="account-head">
+				<h2>Account 2 - with a really long title</h2>
+				<button>Unlink</button>
+			</div>
+			<div class="questions correct">
+				<p>What is your mother in-laws middle name?</p>
+				<form>
+					<div class="field">
+						<label for="account-2-question-1">Your Answer</label>
+						<input id="account-2-question-1" type="text">
+					</div>
+					<input type="submit" value="">
+				</form>
+			</div>
+			<div class="questions correct">
+				<p>Where did you go for highschool?</p>
+				<form>
+					<div class="field">
+						<label for="account-2-question-1">Your Answer</label>
+						<input id="account-2-question-1" type="text">
+					</div>
+					<input type="submit" value="">
+				</form>
+			</div>
+		</div>
+		<div class="account">
+			<div class="account-head">
+				<h2>Account 3</h2>
+				<button>Unlink</button>
+			</div>
+		</div>
+		<a id="link_account" href="" class="cta c-full c-red">+ Link Investment Account</a>
+	</div>
+	<div id="feedbacks">
+		<h2>Feedbacks</h2>
+		<div class="feedback">
+			<p>1. How would you rate your understanding of your investments after using Vestivise?</p>
+			<ul class="rating"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li></ul>
+		</div>
+		<div class="feedback">
+			<p>2. How would you rate the visuals that convey your investment information?</p>
+			<ul class="rating"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li></ul>
+		</div>
+		<div class="feedback">
+			<p>3. How satisfied are you with the explanations of the terms and numbers?</p>
+			<ul class="rating"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li></ul>
+		</div>
+		<div class="feedback">
+			<p>4. How would you rate how well the features Vestivise offers solve your investment problems?</p>
+			<ul class="rating"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li></ul>
+		</div>
+		<div class="feedback">
+			<p>5. How enthusiastically would you recommend Vestivise to another company?</p>
+			<ul class="rating"><li>☆</li><li>☆</li><li>☆</li><li>☆</li><li>☆</li></ul>
+		</div>
+		<input type="submit" class="cta c-full c-red" value="Submit">
+		<!-- 
+
+			adds .active to li on click, removing sibling active li's
+
+			ajax submit results:
+			- .feedbacks.each() get .active li
+			- count active li order from left = rating #
+			- submit result
+
+		-->
+	</div>
+</main>
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<!-- for offline dev -->
+<!-- <script src="web/jquery.js"></script> -->
+<!-- <script src="web/jquery-migrate.js"></script> -->
+<script src="web/library.js"></script>
+<script src="web/scripts.js"></script>
+</body>
+</html>

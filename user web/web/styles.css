@@ -3,21 +3,22 @@
     1.0 SETTINGS
         1.1 CLASSES
         1.2 FORMS
-    2.0 LOGIN & REGISTER
-    3.0 HEADER
+    2.0 HEADER
+    3.0 LOGIN & REGISTER
     4.0 DASHBOARD
-        4.1 DASHBOARD DATA
-        4.2 DASHBOARD ADD USER
+    5.0 SETTINGS
+        5.1 ACCOUNTS
+        5.2 FEEDBACKS
     9.0 ANIMATIONS
 
 */
 
 /*
 
-    RED: #f43e54
+    RED:#f43e54
          rgb(244,62,83)
 
-    TUR: #009999
+    TUR:#009999
          rgb(0,153,153)
 
 */
@@ -87,7 +88,8 @@ p,ol,ul{
 
 a{
     text-decoration:none;
-    color:#8b7355
+    color:#8b7355;
+    transition:.3s
     }
 
 input,textarea,select,button{
@@ -166,7 +168,7 @@ button{
         }
 
     .cta.c-red-light{
-        background:#ff6666
+        background:#f76576
         }
 
     .cta.c-tur{
@@ -208,6 +210,13 @@ button{
         box-shadow:0 0 0 1px #eee
         }
 
+    .arrow{
+        display:inline-block;
+        height:12px !important;
+        margin:0 0 0 5px;
+        vertical-align:-1px;
+        }
+
     /*  1.1 CLASSES  */
 
     /*  1.2 FORMS  */
@@ -237,6 +246,20 @@ button{
         margin:0 0 10px
         }
 
+        .field-row{
+            font-size:0
+            }
+
+        .field.half{
+            display:inline-block;
+            width:calc(50% - 5px);
+            margin:0 10px 10px 0
+            }
+
+        .field.half:nth-of-type(2n){
+            margin:0 0 10px
+            }
+
     .field label{
         position:absolute;
         width:100%;
@@ -259,6 +282,32 @@ button{
         background:#fff;
         box-shadow:0 0 0 1px #eee
         }
+
+    .field select{
+        color:#999;
+        background:#fff url(../img/down-arrow.png) right/contain no-repeat
+        }
+
+        .field.error:after{
+            content:"*";
+            position:absolute;
+            top:0;
+            right:15px;
+            font:24px/56px "Graphik",Helvetica,Arial,sans-serif;
+            color:#b55b2a;
+            pointer-events:none
+            }
+
+        .field.error input,
+        .field.error select{
+            background:#fbb;
+            box-shadow:0 0 0 1px #fbb
+            }
+
+        .field.error label,
+        .field.error label{
+            color:#b55b2a
+            }
 
     .field textarea{
         width:100%;
@@ -283,6 +332,12 @@ button{
         color:#fff
         }
 
+    .field-subtext .error{
+        display:none;
+        margin:0 0 10px;
+        color:#fff
+        }
+
     .field-subtext{
         color:#999
         }
@@ -291,20 +346,7 @@ button{
 
 /*  1.0 SETTINGS - END  */
 
-/*  2.0 LOGIN & REGISTER  */
-
-    #page-login,
-    #page-recover-password{
-        background:#f43e54
-        }
-
-    #login-container .cta{
-        margin:20px 0 0
-        }
-
-/*  2.0 LOGIN & REGISTER - END  */
-
-/*  3.0 HEADER  */
+/*  2.0 HEADER  */
 
 #header{
     position:fixed;
@@ -316,15 +358,16 @@ button{
 #header #logo{
     position:relative;
     display:block;
-    width:75px;
-    height:75px;
+    width:60px;
+    height:60px;
     background:#f43e54;
-    cursor:pointer
+    cursor:pointer;
+    z-index:110
     }
 
 #header #logo img{
     position:absolute;
-    width:40px;
+    width:30px;
     top:50%;
     left:50%;
     -webkit-transform:translate(-50%,-50%);
@@ -332,175 +375,222 @@ button{
     }
 
 #header #navigation{
-
+    position:absolute;
+    top:0;
+    left:0;
+    padding:0 15px 0 75px;
+    white-space:nowrap;
+    font-size:0;
+    background:#fff;
+    box-shadow:0 0 20px 5px transparent;
+    box-shadow:0 0 20px 5px rgba(0,0,0,.1);
+    transition:.15s;
+    z-index:105
     }
 
-/*  3.0 HEADER - END  */
+#header #navigation a{
+    position:relative;
+    display:inline-block;
+    padding:0 15px;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    font:500 12px/60px "Graphik",Helvetica,Arial,sans-serif;
+    color:#111
+    }
+
+#header #navigation #nav-logout{
+    color:#009999
+    }
+
+    html.scroll #header #navigation{
+        pointer-events:none;
+        opacity:0
+        }
+
+    #header:hover #navigation{
+        pointer-events:auto !important;
+        opacity:1 !important
+        }
+
+    html.link_account_notification.scroll #header:after,
+    html.link_account_notification #header #nav-settings:after{
+        content:"";
+        position:absolute;
+        display:block;
+        top:-14px;
+        right:-6px;
+        width:12px;
+        height:12px;
+        margin:10px 0;
+        border-radius:100%;
+        background:#e6a949;
+        pointer-events:none;
+        z-index:110
+        }
+
+    html.link_account_notification #header #nav-settings:after{
+        top:6px;
+        right:8px;
+        width:8px;
+        height:8px
+        }
+
+        html.link_account_notification #header:hover::after{
+            opacity:0;
+            transition:.3s            
+            }
+
+/*  2.0 HEADER - END  */
+
+/*  3.0 LOGIN & REGISTER  */
+
+#page-login,
+#page-recover-password,
+#page-register{
+    background:#f43e54
+    }
+
+#login-container .cta,
+#register-container .cta{
+    margin:20px 0 0
+    }
+
+#login-here{
+    position:fixed;
+    top:30px;
+    right:30px;
+    font:14px/1em "Graphik",Helvetica,Arial,sans-serif;
+    color:#fff
+    }
+
+#login-here strong{
+    font-weight:500
+    }
+
+#morning-star{
+    position:fixed;
+    width:90%;
+    max-width:1400px;
+    left:50%;
+    bottom:0;
+    -webkit-transform:translateX(-50%);
+    transform:translateX(-50%);
+    letter-spacing:.05em;
+    text-align:center;
+    font:11px/1.5em "Circular",Helvetica Neue,Helvetica,Arial,sans-serif;
+    color:rgba(255,255,255,.6)
+    }
+
+/*  3.0 LOGIN & REGISTER - END  */
 
 #container{
-    margin:90px auto
+    margin:180px auto
+    }
+
+.section{
+    min-height:100vh
     }
 
 /*  4.0 DASHBOARD  */
 
-    /*  4.1 DASHBOARD DATA  */
+/*  4.0 DASHBOARD - END  */
 
-    #employee-head{
-        margin:0 0 30px
-        }
+/*  5.0 SETTING  */
 
-    #employee-head #employee-search{
-        display:inline-block
-        }
+    /*  5.1 ACCOUNTS  */
 
-    #employee-head .field{
-        display:inline-block;
-        vertical-align:top;
-        margin:0 10px 0 0
-        }
-
-    #employee-head #employee-search-input{
-        width:300px
-        }
-
-    #employee-head #employee-search-submit{
-        display:inline-block;
-        vertical-align:top;
-        width:45px;
-        height:45px;
-        font-size:0;
-        background:#dddddd url(../img/icon-search.png) center/20px no-repeat;
-        }
-
-    #employee-head .cta{
-        float:right
-        }
-
-    #employee-listing{
-        position:relative;
-        max-height:510px;
-        overflow:hidden;
-        padding:30px
-        }
-
-    #employee-listing ul{
-        display:block;
-        display:-webkit-flex;
-        display:flex;
-        flex-wrap:wrap;
-        -webkit-flex-wrap:wrap;
-        margin:0;
-        padding:0;
-        list-style:none
-        }
-
-    #employee-listing ul:nth-of-type(even){
-        background:#fafafa
-        }
-
-    #employee-listing ul li{
-        display:inline-block;
-        padding:0 15px;
-        font:14px/45px "Graphik",Helvetica,Arial,sans-serif;
-        color:#555
-        }
-
-    #employee-listing ul li:nth-of-type(1),
-    #employee-listing ul li:nth-of-type(2){
-        width:40%
-        }
-
-    #employee-listing ul li:nth-of-type(3){
-        width:20%;
-        text-align:right
-        }
-
-    #employee-listing #listing-head li{
-        text-transform:uppercase;
-        letter-spacing:.15em;
-        font:500 14px/45px "Graphik",Helvetica,Arial,sans-serif;
-        color:#111
-        }
-
-    #employee-listing #employee-listing-more{
-        display:none
-        }
-
-    #employee-listing.overflow #employee-listing-more{
-        display:block;
-        position:absolute;
-        width:100%;
-        height:60px;
-        left:0;
-        bottom:0;
-        padding:15px 30px;
-        background:#fff;
-        z-index:10
-        }
-
-    #employee-listing.overflow #employee-listing-more:before{
-        content:"";
-        position:absolute;
-        width:100%;
-        height:90px;
-        bottom:60px;
-        background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%)
-        }
-
-    #employee-listing.overflow #employee-listing-more button{
-        font:14px/1em "Graphik",Helvetica,Arial,sans-serif;
-        color:#009999
-        }
-
-    #participant{
-        margin:60px 0 0
-        }
-
-    #participant h2{
+    #page-settings h1{
         margin:-8px 0 22px
         }
 
-    #participant-info{
-        padding:30px;
-        font-size:0
+    .account{
+        margin:0 0 30px
         }
 
-    #participant-info .number{
-        display:inline-block;
-        vertical-align:top;
-        width:calc(40% - 30px);
-        margin:0 60px 0 0
-        }
-
-    #participant-info .number:last-of-type{
+    .account:last-of-type{
         margin:0
         }
 
-    #participant-info .number h3{
-        font:120px/1em "Graphik",Helvetica,Arial,sans-serif;
-        color:#009999
+    .account .account-head{
+        margin:0 0 30px;
+        padding:0 15px;
+        line-height:47px;
+        height:45px;
+        background:#eee
         }
 
-    #participant-info .number p{
-        margin:22px 0 0
+    .account .account-head h2{
+        display:inline-block;
+        font:14px/45px "Graphik",Helvetica,Arial,sans-serif;
         }
 
-    #payment-info{
-        margin:60px 0 0;
-        padding:52px 0 0;
-        border-top:1px solid #eee
+    .account .account-head button{
+        display:inline-block;
+        float:right;
+        font:14px/45px "Graphik",Helvetica,Arial,sans-serif;
+        color:#0a9d9d
         }
 
-    /*  4.1 DASHBOARD DATA  */
+    .account .questions{
+        position:relative;
+        margin:-7px 0 18px
+        }
 
-    /*  4.2 DASHBOARD ADD USER  */
+    .account .questions p{
+        margin:0;
+        padding-right:15px;
+        font:500 14px/2em "Graphik",Helvetica,Arial,sans-serif;
+        color:#999
+        }
 
-    #employee_add{
+    .account .questions:after{
+        content:"✓";
+        position:absolute;
+        top:0;
+        right:0;
+        font:500 14px/2em "Graphik",Helvetica,Arial,sans-serif;
+        color:#01cf9c
+        }
+
+    .account .questions form{
+        position:relative;
+        display:none;
+        margin:12px 0 0
+        }
+
+    .account .questions input[type="submit"]{
+        content:"";
+        position:absolute;
+        display:block;
+        width:45px;
+        height:45px;
+        top:0;
+        right:0;
+        background:url(../img/icon-arrow-right.svg) center/12px no-repeat;
+        box-shadow:none;
+        z-index:10
+        }
+
+        .account .questions.incorrect:after{
+            content:"";
+            display:block;
+            width:8px;
+            height:8px;
+            margin:10px 0;
+            border-radius:100%;
+            background:#e6a949
+            }
+
+        .account .questions.incorrect form{
+            display:block
+            }
+
+    #link_account_linking{
         position:fixed;
-        width:100%;
-        height:100%;
         top:0;
         left:0;
+        width:100%;
+        height:100%;
         background:rgba(0,153,153,.6);
         opacity:0;
         pointer-events:none;
@@ -508,59 +598,135 @@ button{
         z-index:200
         }
 
-        html.employee_add_open{
-            overflow:hidden
-            }
+    #link_account_linking #link_account_info{
+        position:fixed;
+        top:50%;
+        left:50%;
+        -webkit-tranform:translate(-50%,-50%);
+        transform:translate(-50%,-50%);
+        padding:30px;
+        text-align:center
+        }
 
-        html.employee_add_open #employee_add{
+    #loader{
+        position:relative;
+        width:60px;
+        height:60px;
+        margin:0 auto 30px;
+        text-indent:-9999em;
+        font-size:10px;
+        border-radius:50%;
+        background:#fff;
+        -webkit-animation:spinner .45s infinite linear;
+        animation:spinner .45s infinite linear;
+        -webkit-transform:translateZ(0);
+        -ms-transform:translateZ(0);
+        transform:translateZ(0)
+        }
+
+    #loader:before{
+        content:"";
+        position:absolute;
+        top:0;
+        left:0;
+        width:50%;
+        height:50%;
+        background:#009999;
+        border-radius:100% 0 0 0
+        }
+    
+    #loader:after{
+        content:"";
+        position:absolute;
+        top:0;
+        left:0;
+        bottom:0;
+        right:0;
+        width:75%;
+        height:75%;
+        border-radius:50%;
+        margin:auto;
+        background:#fff
+        }
+
+    @-webkit-keyframes spinner{
+        0%{
+            -webkit-transform:rotate(0deg);
+            transform:rotate(0deg);
+        }
+        100%{
+            -webkit-transform:rotate(360deg);
+            transform:rotate(360deg);
+        }
+    }
+
+    @keyframes spinner{
+        0%{
+            -webkit-transform:rotate(0deg);
+            transform:rotate(0deg)
+        }
+        100%{
+            -webkit-transform:rotate(360deg);
+            transform:rotate(360deg)
+        }
+    }
+
+        html.link_account_linking #link_account_linking{
             opacity:1;
             pointer-events:auto
             }
 
-    #employee_add #employee_add_close{
-        position:fixed;
-        top:30px;
-        right:30px;
-        width:45px;
-        height:45px;
+    /*  5.1 ACCOUNTS - END  */
+
+    /*  5.2 FEEDBACKS  */
+
+    #feedbacks{
+        margin:60px 0 0
         }
 
-    #employee_add #employee_add_close hr{
-        position:absolute;
-        width:45px;
-        height:1px;
-        top:50%;
-        left:50%;
-        -webkit-transform:translate(-50%,-50%) rotate(45deg);
-        transform:translate(-50%,-50%) rotate(45deg);
+    #feedbacks p{
+        margin:22px 0 8px
+        }
+
+    #feedbacks .rating{
         margin:0;
-        background:#fff;
-        border:none;
-        outline:none
+        padding:0;
+        list-style:none;
+        unicode-bidi:bidi-override;
+        direction:rtl;
+        text-align:left
         }
 
-    #employee_add #employee_add_close hr:nth-of-type(2){
-        -webkit-transform:translate(-50%,-50%) rotate(-45deg);
-        transform:translate(-50%,-50%) rotate(-45deg)
+    #feedbacks .rating li{
+        display:inline-block;
+        position:relative;
+        margin:0 10px 0 0;
+        font-size:24px;
+        cursor:pointer
         }
 
-    #employee_add #employee_add_form{
-        position:fixed;
-        max-width:450px;
-        top:50%;
-        left:50%;
-        -webkit-transform:translate(-50%,-50%);
-        transform:translate(-50%,-50%);
-        padding:30px
+    #feedbacks .rating li:before{
+        content:"\2605";
+        position:absolute;
+        color:transparent;
+        pointer-events:none;
+        transition:.15s
         }
 
-    #employee_add #employee_add_form .field-subtext{
-        margin:10px 0 30px
+    #feedbacks .rating > li:hover:before,
+    #feedbacks .rating > li:hover ~ li:before,
+    #feedbacks .rating > li.active:before,
+    #feedbacks .rating > li.active ~ li:before{
+        color:#e5c100
         }
 
-    /*  4.2 DASHBOARD ADD USER  */
+    #feedbacks .cta{
+        margin:30px 0 0
+        }
 
-/*  4.0 DASHBOARD - END  */
+    /*  5.2 FEEDBACKS - END  */
+
+/*  5.0 SETTING - END  */
 
 /*  9.0 ANIMATION  */
 

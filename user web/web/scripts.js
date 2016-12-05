@@ -68,6 +68,17 @@ function header_logo_click(event){
 }
 header_logo.click(header_logo_click)
 
+function header_scroll(){
+	var scroll_top = $(window).scrollTop();
+	if(scroll_top > 30){
+		html.addClass('scroll')
+	}else{
+		html.removeClass('scroll')
+	}
+}
+header_scroll();
+$(window).scroll(header_scroll)
+
 /*  HEADER - END  */
 
 /*  DASHBOARD  */
@@ -103,3 +114,17 @@ function employee_init(){
 employee_init()
 
 /*  DASHBOARD - END  */
+
+/*  SETTINGS  */
+
+$('#link_account').click(function(e){
+	e.preventDefault();
+	html.addClass('link_account_linking');
+	// on success html.removeClass('link_account_linking')
+})
+
+$('.rating li').click(function(){
+	$(this).addClass('active').siblings().removeClass('active')
+})
+
+/*  SETTINGS - END  */
