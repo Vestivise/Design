@@ -1171,6 +1171,7 @@ button{
         -webkit-transform:translateX(100%);
         transform:translateX(100%);
         opacity:0;
+    	cursor:e-resize;
         z-index:200;
         transition:.6s
         }
@@ -1186,12 +1187,9 @@ button{
         padding:60px;
         background:#fff;
         box-shadow:0 0 20px 5px rgba(0,0,0,.1);
+        cursor:auto;
         z-index:210
-        }
-
-    html.annotated{
-        overflow:hidden
-        }
+	    }
 
     html.annotated #annotation{
         opacity:1;
