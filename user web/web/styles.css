@@ -6,6 +6,10 @@
     2.0 HEADER
     3.0 LOGIN & REGISTER
     4.0 DASHBOARD
+        4.1 CHART PERCENTAGE
+        4.2 CHART BAR
+        4.3 CHART RISKS
+        4.4 CHART COSTS
     5.0 SETTINGS
         5.1 ACCOUNTS
         5.2 FEEDBACKS
@@ -382,7 +386,6 @@ button{
     white-space:nowrap;
     font-size:0;
     background:#fff;
-    box-shadow:0 0 20px 5px transparent;
     box-shadow:0 0 20px 5px rgba(0,0,0,.1);
     transition:.15s;
     z-index:105
@@ -487,11 +490,667 @@ button{
     margin:180px auto
     }
 
+#page-dashboard #container{
+    margin:auto
+    }
+
 .section{
-    min-height:100vh
+    padding:.1px 0;
+    min-height:100vh;
+    border-bottom:1px solid #eee
+    }
+
+.section:last-of-type{
+    border-bottom:none
     }
 
 /*  4.0 DASHBOARD  */
+
+    #chart-slider{
+        position:fixed;
+        bottom:30px;
+        right:30px;
+        list-style:none;
+        margin:0;
+        padding:7px;
+        background:#fff;
+        box-shadow:0 0 20px 5px rgba(0,0,0,.05);
+        border-radius:15px;
+        z-index:100
+        }
+
+    #chart-slider li{
+        width:15px;
+        height:15px;
+        margin:6px 0;
+        background:transparent;
+        box-shadow:inset 0 0 0 2px #ccc;
+        border-radius:100%;
+        cursor:pointer;
+        transition:.3s
+        }
+
+    #chart-slider li.active{
+        background:#ccc
+        }
+
+    .slider{
+        position:relative;
+        margin:0 !important;
+        padding:0 !important
+        }
+
+    .slider .slide{
+        display:none
+        }
+
+    .slider .slide:first-of-type,
+    .slider.loaded .slide{
+        display:block !important
+        }
+
+    .slick-slider{
+        display:block;
+        position:relative;
+        overflow:hidden;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+        -webkit-touch-callout:none;
+        -khtml-user-select:none;
+        -ms-touch-action:pan-y;
+        touch-action:pan-y;
+        -webkit-tap-highlight-color:transparent
+        }
+
+    .slick-slider .slick-list{
+        position:relative;
+        display:block;
+        overflow:hidden;
+        margin:0;
+        padding:0
+        }
+
+    .slick-slider .slick-list:focus{
+        outline:none
+        }
+
+    .slick-slider .slick-list.dragging{
+        cursor:pointer;
+        cursor:hand
+        }
+
+    .slick-slider .slick-list,
+    .slick-slider .slick-list .slick-track{
+        height:100%;
+        -webkit-transform:translate3d(0,0,0);
+        -moz-transform:translate3d(0,0,0);
+        -ms-transform:translate3d(0,0,0);
+        -o-transform:translate3d(0,0,0);
+        transform:translate3d(0,0,0)
+        }
+
+    .slick-slider .slick-list .slick-track{
+        position:relative;
+        display:block;
+        top:0;
+        left:0
+        }
+
+    .slick-slider .slick-list .slick-track:after{
+        clear:both
+        }
+
+    .slick-slide{
+        float:left;
+        height:100%;
+        min-height:1px;
+        list-style:none
+        }
+
+    .slick-slide img{
+        display:block;
+        vertical-align:middle
+        }
+
+    .slick-slide.slick-loading img{
+        display:none
+        }
+
+    .slick-slide.dragging img{
+        pointer-events:none
+        }
+
+    .slick-vertical .slick-slide{
+        display:block;
+        height:auto;
+        border:1px solid transparent
+        }
+
+    .slick-slider button{
+        position:absolute;
+        display:block;
+        top:50%;
+        -webkit-transform:translateY(-50%);
+        transform:translateY(-50%);
+        width:45px;
+        height:45px;
+        font-size:0;
+        cursor:pointer;
+        z-index:10
+        }
+
+    .slick-slider button hr{
+        position:absolute;
+        width:30px;
+        height:2px;
+        top:50%;
+        left:50%;
+        background:#aaa;
+        outline:none;
+        border:none;
+        transition:.15s
+        }
+
+    .slick-slider button.slick-prev hr:last-of-type,
+    .slick-slider button.slick-next hr:first-of-type{
+        -webkit-transform:translate(-50%,-50%) rotate(60deg);
+        transform:translate(-50%,-50%) rotate(60deg);
+        margin-top:-12px
+        }
+
+    .slick-slider button.slick-prev hr:first-of-type,
+    .slick-slider button.slick-next hr:last-of-type{
+        -webkit-transform:translate(-50%,-50%) rotate(-60deg);
+        transform:translate(-50%,-50%) rotate(-60deg);
+        margin-top:12px
+        }
+
+    .slick-slider button.slick-prev hr:first-of-type{
+        margin-top:-12.5px
+        }
+
+    .slick-slider button.slick-prev hr:last-of-type{
+        margin-top:12.5px
+        }
+
+    .slick-slider button:hover hr{
+        background:#999
+        }
+
+    .slick-slider button.slick-disabled hr{
+        background:#ddd;
+        cursor:not-allowed
+        }
+
+    .slick-slider button.slick-prev{
+        left:30px
+        }
+
+    .slick-slider button.slick-next{
+        right:30px
+        }
+
+    .slide{
+        position:relative;
+        height:100vh;
+        width:100%
+        }
+
+    .slide .chart{
+        position:absolute;
+        top:50%;
+        left:50%;
+        -webkit-transform:translate(-50%,-50%);
+        transform:translate(-50%,-50%)
+        }
+
+    .slide .slide-info{
+        position:absolute;
+        bottom:30px;
+        left:30px;
+        max-width:420px
+        }
+
+    .slide .slide-info h2{
+        margin:0 0 15px;
+        font-size:30px;
+        line-height:1em
+        }
+
+    .slide .slide-info p{
+        font-size:14px;
+        margin:0
+        }
+
+    .chart{
+        // width:90%;
+        width:800px
+        }
+
+    .chart,
+    .chart ul{
+        white-space:nowrap;
+        margin:0;
+        padding:0;
+        font-size:0;
+        list-style:none
+        }
+
+    .chart ul,
+    .chart li{
+        position:relative;
+        }
+
+    .chart h3,
+    .chart h4{
+        margin:0;
+        text-align:center;
+        text-transform:uppercase;
+        letter-spacing:2px;
+        font:500 12px/1em "Graphik",Helvetica,Arial,sans-serif;
+        color:#000
+        }
+
+    /*  4.1 CHART PERCENTAGE  */
+
+    .percentage_chart ul,
+    .percentage_chart li{
+        display:inline-block;
+        height:90px
+        }
+
+    .percentage_chart ul:nth-of-type(1){background:#cbdf8c}
+    .percentage_chart ul:nth-of-type(2){background:#9cbdbe}
+    .percentage_chart ul:nth-of-type(3){background:#f79594}
+    .percentage_chart ul:nth-of-type(4){background:#e6ded5}
+
+    /*  fallback colors  */
+    .percentage_chart ul:nth-of-type(5){background:#b8d86b}
+    .percentage_chart ul:nth-of-type(6){background:#e6a949}
+    .percentage_chart ul:nth-of-type(7){background:#f79594}
+    .percentage_chart ul:nth-of-type(8){background:#dddddd}
+
+    .percentage_chart span{
+        position:absolute;
+        top:-60px;
+        left:50%;
+        -webkit-transform:translateX(-50%);
+        transform:translateX(-50%);
+        }
+
+    .percentage_chart span:after{
+        content:"";
+        position:absolute;
+        top:0;
+        left:50%;
+        -webkit-transform:translateX(-50%);
+        transform:translateX(-50%);
+        height:45px;
+        width:1px;
+        margin:15px auto 0;
+        background:#aaa
+        }
+
+        .percentage_chart ul:nth-of-type(even) span{
+            top:-90px
+            }
+
+        .percentage_chart ul:nth-of-type(even) span:after{
+            height:75px
+            }
+
+        .percentage_chart li:first-of-type{
+            background:rgba(0,0,0,.1) url(../img/stripes.png) center/120px repeat
+            }
+
+        .percentage_chart li span{
+            top:auto;
+            bottom:-60px
+            }
+
+        .percentage_chart li span:after{
+            top:-48px;
+            margin:0;
+            background:#ccc
+            }
+
+            .percentage_chart li:nth-of-type(2) span{
+                bottom:-90px
+                }
+
+            .percentage_chart li:nth-of-type(2) span:after{
+                top:-78px;
+                height:75px
+                }
+
+        .percentage_chart li span h3{
+            font-size:12px;
+            color:#999
+            }
+
+    /*  4.1 CHART PERCENTAGE - END  */
+    
+    /*  4.2 CHART BAR  */
+
+    .bar_chart{
+        height:360px;
+        text-align:right;
+        font-size:0;
+        border-left:1px solid #ccc;
+        border-bottom:1px solid #ccc
+        }
+
+    .bar_chart .y-title{
+        position:absolute;
+        transform-origin:left top 0;
+        -webkit-transform:rotate(-90deg) translateX(-50%);
+        transform:rotate(-90deg) translateX(-50%);
+        float:left;
+        top:50%;
+        left:-30px
+        }
+
+    .bar_chart .values{
+        position:absolute;
+        width:100%;
+        left:0;
+        margin:0 0 -6px;
+        padding:0 10px;
+        text-align:left;
+        font:10px/20px "Graphik",Helvetica,Arial,sans-serif;
+        color:#999
+        }
+
+    .bar_chart .values hr{
+        position:relative;
+        width:calc(100% + 20px);
+        left:-10px;
+        height:1px;
+        background:#eee;
+        border:none;
+        outline:none
+        }
+
+    .bar_chart ul{
+        display:-webkit-inline-flex;
+        display:inline-flex;
+        align-items:flex-end;
+        -webkit-align-items:flex-end;
+        -webkit-justify-content:center;
+        justify-content:center;
+        height:100%;
+        margin:0 10px;
+        z-index:10
+        }
+
+    .bar_chart ul h3{
+        position:absolute;
+        bottom:-25px
+        }
+
+    .bar_chart li{
+        position:relative;
+        display:inline-block;
+        margin:0 5px;
+        background:#f79594
+        }
+
+    .bar_chart li:nth-of-type(2){
+        background:#9cbdbe
+        }
+
+    .bar_chart li:nth-of-type(3){
+        background:#cbdf8c
+        }
+
+        #contribution-and-withdrawals .bar_chart li{
+            background:#9cbdbe
+            }
+
+        #contribution-and-withdrawals .bar_chart li:nth-of-type(2){
+            background:#f79594 
+            }
+
+        #contribution-and-withdrawals .bar_chart li:nth-of-type(3){
+            background:#cbdf8c
+            }
+
+    .bar_chart li span{
+        position:absolute;
+        width:100%;
+        top:-15px;
+        left:0;
+        text-align:center;
+        font-size:10px;
+        }
+
+    .square{
+        display:inline-block;
+        width:12px;
+        height:12px;
+        vertical-align:-1px;
+        margin:0 5px 0 8px
+        }
+
+    .square:first-of-type{
+        margin-left:0
+        }
+
+    /*  4.2 CHART BAR - END  */
+    
+    /*  4.3 CHART RISKS  */
+
+    .half_pie_chart{
+        margin:60px 0 0;
+        width:400px;
+        height:400px;
+        overflow:hidden;
+        clip:rect(0px,400px,200px,0px);
+        background:#eee;
+        border-radius:100%
+        }
+
+    .half_pie_chart ul{
+        width:100%;
+        height:100%
+        }
+
+    .half_pie_chart li{
+        position:absolute;
+        top:50%;
+        left:50%;
+        width:400px;
+        height:400px;
+        -webkit-transform:translate(-50%,-50%);
+        transform:translate(-50%,-50%);
+        clip:rect(0px,400px,200px,0px);
+        }
+
+    .half_pie_chart li:nth-of-type(1){background:#ffa724;z-index:50}
+    .half_pie_chart li:nth-of-type(2){background:#ffdb6d;z-index:45}
+    .half_pie_chart li:nth-of-type(3){background:#b8d86b;z-index:40}
+
+    .half_pie_chart li:nth-of-type(1){
+        -webkit-transform:translate(-50%,-50%) rotate(-120deg);
+        transform:translate(-50%,-50%) rotate(-120deg)
+        }
+
+    .half_pie_chart li:nth-of-type(2){
+        -webkit-transform:translate(-50%,-50%) rotate(-60deg);
+        transform:translate(-50%,-50%) rotate(-60deg)
+        }
+
+        .half_pie_chart h3{
+            position:absolute;
+            width:100%;
+            top:20%;
+            left:0;
+            padding:0 60px;
+            color:#fff;
+            z-index:51
+            }
+
+        .half_pie_chart h3:nth-of-type(1){
+            top:40%;
+            text-align:left
+            }
+
+        .half_pie_chart h3:nth-of-type(3){
+            top:40%;
+            text-align:right
+            }
+
+        .half_pie_chart hr{
+            position:absolute;
+            top:50%;
+            left:50%;
+            width:180px;
+            height:2px;
+            -webkit-transform:translate(-50%,-50%);
+            transform:translate(-50%,-50%);
+            background:#fff;
+            outline:none;
+            border:none;
+            z-index:55
+            }
+
+    /*  4.3 CHART RISKS - END  */
+    
+    /*  4.4 CHART COSTS  */
+
+    .half_circle_chart{
+        width:400px;
+        height:400px
+        }
+
+    .half_circle_chart .circle{
+        position:absolute;
+        width:100%;
+        height:100%;
+        overflow:hidden;
+        clip:rect(0px,400px,200px,0px);
+        background:#ddd;
+        border-radius:100%
+        }
+
+    .half_circle_chart .circle .fill{
+        position:absolute;
+        top:50%;
+        left:50%;
+        width:400px;
+        height:400px;
+        -webkit-transform:translate(-50%,-50%);
+        transform:translate(-50%,-50%);
+        clip:rect(0px,400px,200px,0px);
+        background:#9cbdbe;
+        z-index:10
+        }
+
+    .half_circle_chart .circle .value{
+        position:absolute;
+        width:180px;
+        height:180px;
+        top:50%;
+        left:50%;
+        -webkit-transform:translate(-50%,-50%);
+        transform:translate(-50%,-50%);
+        background:#fcfcfc;
+        border-radius:100%;
+        z-index:20
+        }
+
+    .half_circle_chart .circle .value h3{
+        position:absolute;
+        left:50%;
+        bottom:50%;
+        -webkit-transform:translateX(-50%);
+        transform:translateX(-50%);
+        font-weight:400;
+        font-size:30px;
+        color:#555
+        }
+
+    .half_circle_chart h4{
+        position:absolute;
+        width:110px;
+        text-align:center;
+        top:55%;
+        z-index:20
+        }
+
+        .half_circle_chart .average{
+            position:absolute;
+            width:400px;
+            height:400px;
+            top:50%;
+            left:50%;
+            -webkit-transform:translate(-50%,-50%);
+            transform:translate(-50%,-50%);
+            z-index:60
+            }
+
+        .half_circle_chart .average hr{
+            position:absolute;
+            width:110px;
+            top:50%;
+            left:0;
+            height:2px;
+            -webkit-transform:translate(0,-60%);
+            transform:translate(0,-60%);
+            background:#555;
+            outline:none;
+            border:none
+            }
+
+        .half_circle_chart .average h4{
+            top:50%;
+            left:-20%;
+            -webkit-transform:rotate(-90deg);
+            transform:rotate(-90deg);
+            color:#555
+            }
+
+    .half_circle_chart .start{
+        left:0
+        }
+
+    .half_circle_chart .end{
+        right:0
+        }
+
+    .half_circle_chart[data-color="green"] .fill{
+        background:#8ccc71
+        }
+
+    .half_circle_chart[data-color="orange"] .fill{
+        background:#e6a949
+        }
+
+    .chart.text{
+        max-width:600px;
+        width:90%;
+        text-align:left
+        }
+
+    .chart.text h3{
+        text-transform:none;
+        letter-spacing:0;
+        text-align:left;
+        font:20px/1em "Graphik",Helvetica,Arial,sans-serif;
+        color:#555
+        }
+
+    .chart.text ul{
+        list-style-type:square;
+        list-style-position:inside;
+        margin:13px 0 23px;
+        font:14px/2em "Graphik",Helvetica,Arial,sans-serif;
+        color:#999
+        }
+
+    /*  4.4 CHART COSTS - END  */
 
 /*  4.0 DASHBOARD - END  */
 
@@ -761,4 +1420,4 @@ button{
 
 @import url("responsive.css");
 
-/*  10.0  RESPONSIVE  */
+/*  10.0  RESPONSIVE  

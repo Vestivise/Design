@@ -109,7 +109,6 @@ function employee_init(){
 			html.addClass('employee_add_open');
 		},10)
 	})
-
 }
 employee_init()
 

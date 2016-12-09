@@ -83,35 +83,129 @@ $(window).scroll(header_scroll)
 
 /*  DASHBOARD  */
 
-function employee_init(){
-	var employee_listing = $('#employee-listing'),
-		employee_add = $('#employee_add'),
-		employee_add_form = employee_add.find('#employee_add_form')
+function chart_slider_init(){
+	var chart_slider = $('#chart-slider'),
+		chart_slider_li = chart_slider.find('li');
 
-	if(employee_listing.find('ul').length > 10){
-		employee_listing.addClass('overflow');
+	function chart_slider_active(){
+		var scroll_top = $(window).scrollTop();
+		$('.section').each(function(){
+			var section = $(this),
+				section_id = section.attr('id'),
+				section_top = section.offset().top;
+			if(scroll_top > section_top - 1){
+				chart_slider.find('[data-scroll="' + section_id + '"]').addClass('active').siblings().removeClass('active')
+			}
+		})
 	}
-	employee_listing.find('#employee-listing-more').click(function(){
-		employee_listing.css('max-height','none').removeClass('overflow')
-	})
-	$('#employee-add').click(function(){
-		employee_add.show(function(){
-			$(document).bind('click',function(e){
-				if(html.hasClass('employee_add_open') && !employee_add_form.is(e.target) && employee_add_form.has(e.target).length === 0){
-					setTimeout(function(){
-						html.removeClass('employee_add_open')
-					},20);
-					$(document).unbind('click');
-				}
-			});
-		});
-		setTimeout(function(){
-			html.addClass('employee_add_open');
-		},10)
-	})
+	chart_slider_active()
+	$(window).scroll(chart_slider_active)
+
+	chart_slider_li.click(function(){
+		var chart_scroll = $(this).attr('data-scroll');
+		scroll_to('#' + chart_scroll)
+	});
 
 }
-employee_init()
+chart_slider_init();
+
+$('.slider').slick({
+	speed:600,
+	infinite:false,
+	slidesToShow:1,
+	variableWidth:false,
+	focusOnSelect:false,
+	Autoplay:true,
+	autoplaySpeed:1000,
+	dots:false,
+	arrows:true,
+	prevArrow:'<button class="slick-prev"><hr><hr></button>',
+	nextArrow:'<button class="slick-next"><hr><hr></button>',
+}).addClass('loaded')
+
+function percentage_charts(){
+	var chart = $(this),
+		chart_section = chart.children(),
+		chart_percentage = chart.attr('data-per'),
+		chart_title = chart.attr('data-title');
+	chart.css('width',chart_percentage + '%').append('<span><h3>' + chart_percentage + '% ' + chart_title + '</h3>');
+	if(chart_section.length > 0){
+		chart_section.each(function(){
+			var section = $(this),
+				section_percentage = section.attr('data-per'),
+				section_percentage_total = section_percentage/100*chart_percentage
+				section_title = section.attr('data-title');
+			section.css('width',section_percentage + '%').append('<span><h3>' + section_percentage_total + '% ' + section_title + '</h3>');
+		})
+	}
+}
+$('.percentage_chart ul').each(percentage_charts);
+
+function bar_charts(){
+	var chart = $(this),
+		chart_ul = chart.find('ul'),
+		chart_ul_length = chart_ul.length;
+
+	chart_ul.css('width','calc(' + 95/chart_ul_length + '% - 20px)').each(function(){
+		var chart_ul = $(this),
+			chart_ul_title = chart_ul.attr('data-title'),
+			chart_ul_li = chart_ul.find('li'),
+			chart_ul_li_length = chart_ul_li.length;
+			chart_ul_li.css('width','calc(' + 100/chart_ul_li_length + '% - 10px)');
+		chart_ul.append('<h3>' + chart_ul_title + '</h3>');
+		chart_ul_li.each(function(){
+			var chart_ul_li = $(this),
+				chart_ul_li_percentage = chart_ul_li.attr('data-per'),
+				chart_ul_li_title = chart_ul_li.attr('data-title');
+			chart_ul_li.css('height',chart_ul_li_percentage + '%').append('<span>' + chart_ul_li_title + '</span>');
+		})
+	});
+
+	function build_background(){
+		var chart_title = chart.attr('data-ytitle'),
+			chart_values = chart.attr('data-yvalues');
+		chart.append('<h3 class="y-title">' + chart_title + '</h3>');
+		var chart_values_array = chart_values.split(" / "),
+			chart_values_array_length = chart_values_array.length,
+			count = 0;
+		chart_values_array.forEach(function(value){
+			count++;
+			var position_bottom = (100/chart_values_array_length)*count;
+			chart.append('<span class="values" style="bottom:' + position_bottom + '%">' + value + '<hr></span>')
+		})
+	}
+	build_background();
+}
+$('.bar_chart').each(bar_charts);
+
+function half_pie_chart(){
+	var chart = $(this);
+		chart_value = chart.attr('data-per'),
+		chart_value_deg = (180*(chart_value/100)).toFixed(1)
+
+	chart.append('<hr style="-webkit-transform:translate(-50%,-50%) rotate(' + chart_value_deg + 'deg);transform:translate(-50%,-50%) rotate(' + chart_value_deg + 'deg);">');
+
+	chart.find('li').each(function(){
+		var chart_li = $(this),
+			chart_li_title = chart_li.attr('data-title');
+		chart.append('<h3>' + chart_li_title + '</h3>');
+	})
+}
+$('.half_pie_chart').each(half_pie_chart);
+
+function half_circle_chart(){
+	var chart = $(this),
+		chart_value = chart.attr('data-per'),
+		chart_total = chart.attr('data-total'),
+		chart_average = chart.attr('data-average'),
+		chart_value_deg = (180 - 180*(chart_value/chart_total)).toFixed(1);
+		chart_average_deg = (180*(chart_average/chart_total)).toFixed(1);
+	chart.append('<h4 class="start">0%</h4><h4 class="end">' + chart_total + '%</h4><div class="average" style="-webkit-transform:translate(-50%,-50%) rotate(' + chart_average_deg + 'deg);transform:translate(-50%,-50%) rotate(' + chart_average_deg + 'deg);"><h4>Average: ' + chart_average + '%</h4><hr></div>')
+	chart.find('.circle').append('<div class="fill" style="-webkit-transform:translate(-50%,-50%) rotate(-' + chart_value_deg + 'deg);transform:translate(-50%,-50%) rotate(-' + chart_value_deg + 'deg);"></div>');
+
+	chart.find('.value').append('<h3>' + chart_value + '%</h3>')
+}
+$('.half_circle_chart').each(half_circle_chart)
 
 /*  DASHBOARD - END  */
 

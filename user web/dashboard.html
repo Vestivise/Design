@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>Vestivise</title>
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="">
+<meta property="og:image" content="">
+<meta property="og:title" content="Vestivise">
+<meta property="og:type" content="website">
+<meta property="og:description" content="">
+
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link href="web/styles.css" rel="stylesheet" type="text/css">
+<link href="web/responsive.css" rel="stylesheet" type="text/css">
+</head>
+<body id="page-dashboard">
+
+<header id="header">
+	<a id="logo" href="/">
+		<img src="img/logo-symbol.png">
+	</a>
+	<nav id="navigation">
+		<a href="settings.html" id="nav-settings">Settings</a>
+		<a href="">Support</a>
+		<a href="" id="nav-logout">Logout</a>
+	</nav>
+</header>
+
+<main id="container">
+	<ul id="chart-slider">
+		<li data-scroll="chart-assets"></li>
+		<li data-scroll="chart-returns"></li>
+		<li data-scroll="chart-risks"></li>
+		<li data-scroll="chart-costs"></li>
+	</ul>
+	<div id="chart-assets" class="section slider">
+		<div id="asset-types" class="slide">
+			<!--  
+				add the class percentage_chart to initiate percentage charts in the scripts.js
+			-->
+			<div class="chart percentage_chart">
+				<!-- 
+					data-per = percentage,
+					make sure it all adds up to 100%. A little bit of error is fine, the bars will just overflow.
+
+					data-title = the title
+				-->
+				<ul data-per="28" data-title="Cash">
+					<!--
+						child bar's data percentage is in relation to it's parent bar's value. The percentage out of the total value will be automatically calculated through the script.
+					-->
+					<li data-per="50" data-title="Cash 1">
+					<li data-per="50" data-title="Cash 2">
+				</ul>
+				<ul data-per="37" data-title="Bonds"></ul>
+				<ul data-per="26" data-title="Stocks">
+					<li data-per="70" data-title="Stock 1">
+					<li data-per="30" data-title="Stock 2">
+				</ul>
+				<ul data-per="9" data-title="Others"></ul>
+			</div>
+			<div class="slide-info">
+				<h2>Your Assets</h2>
+				<p>You have $30,000 invested. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.</p>
+			</div>
+		</div>
+		<div id="asset-stocks" class="slide">
+			<div class="chart percentage_chart">
+				<ul data-per="20" data-title="Type 1"></ul>
+				<ul data-per="31" data-title="Type 2"></ul>
+				<ul data-per="30" data-title="Type 3"></ul>
+				<ul data-per="19" data-title="Type 4"></ul>
+			</div>
+			<div class="slide-info">
+				<h2>Stock Types</h2>
+				<p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
+			</div>
+		</div>
+		<div id="asset-bonds" class="slide">
+			<div class="chart percentage_chart">
+				<ul data-per="40" data-title="Type 1"></ul>
+				<ul data-per="21" data-title="Type 2"></ul>
+				<ul data-per="20" data-title="Type 3"></ul>
+				<ul data-per="19" data-title="Type 4"></ul>
+			</div>
+			<div class="slide-info">
+				<h2>Bond Types</h2>
+				<p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
+			</div>
+		</div>
+	</div>
+	<div id="chart-returns" class="section slider">
+		<div id="return-total-percentage" class="slide">
+			<!--
+				add the class bar_chart to initiate percentage charts in the scripts.js
+
+				data-ytitle = the title displayed on the y axis
+				data-yvalues = the values displayed on the y axis, separate with /
+			-->
+			<div class="chart bar_chart" data-ytitle="Return Amount" data-yvalues="2.5 / 5 / 7.5 / 10">
+				<ul data-title="One Month Return">
+					<li data-per="10" data-title="1"></li>
+					<li data-per="25" data-title="2.5"></li>
+				</ul>
+				<ul data-title="Three Month Return">
+					<li data-per="20" data-title="2"></li>
+					<li data-per="35" data-title="3.5"></li>
+				</ul>
+				<ul data-title="One Year Return">
+					<li data-per="34" data-title="3.4"></li>
+					<li data-per="60" data-title="6"></li>
+				</ul>
+				<ul data-title="Three Year Return">
+					<li data-per="40" data-title="4"></li>
+					<li data-per="80" data-title="8"></li>
+				</ul>
+			</div>
+			<div class="slide-info">
+				<h2>Your Returns (%)</h2>
+				<p>
+					You have $30,000 invested. Lorem ip	sum dolor sit amet, consectetuer adipiscing elit. Donec odio.
+					<br>
+					<!-- 
+					
+						Using squares in the description to indicate what each bar represents.
+
+						color assigned with style=""
+
+					 -->
+					<span class="square" style="background:#f79594"></span> Returns
+					<span class="square" style="background:#9cbdbe"></span> Benchmark
+				</p>
+			</div>
+		</div>
+		<div id="return-total-price" class="slide">
+			<!--
+				add the class bar_chart to initiate percentage charts in the scripts.js
+
+				data-ytitle = the title displayed on the y axis
+				data-yvalues = the values displayed on the y axis, separate with /
+			-->
+			<div class="chart bar_chart" data-ytitle="Return Amount" data-yvalues="$10,000 / $20,000 / $30,000 / $40,000">
+				<ul data-title="One Month Return">
+					<li data-per="10" data-title="$4,000"></li>
+					<li data-per="25" data-title="$10,000"></li>
+				</ul>
+				<ul data-title="Three Month Return">
+					<li data-per="20" data-title="$8,000"></li>
+					<li data-per="35" data-title="$14,000"></li>
+				</ul>
+				<ul data-title="One Year Return">
+					<li data-per="34" data-title="$13,600"></li>
+					<li data-per="60" data-title="$24,000"></li>
+				</ul>
+				<ul data-title="Three Year Return">
+					<li data-per="40" data-title="$16,000"></li>
+					<li data-per="80" data-title="$32,000"></li>
+				</ul>
+			</div>
+			<div class="slide-info">
+				<h2>Your Returns ($)</h2>
+				<p>
+					You have $30,000 invested. Lorem ip	sum dolor sit amet, consectetuer adipiscing elit. Donec odio.
+					<br>
+					<span class="square" style="background:#f79594"></span> Returns
+					<span class="square" style="background:#9cbdbe"></span> Benchmark
+				</p>
+			</div>
+		</div>
+		<div id="contribution-and-withdrawals" class="slide">
+			<div class="chart bar_chart" data-ytitle="Return Amount" data-yvalues="15,000 / 30,000 / 45,000 / 60,000">
+				<ul data-title="2013">
+					<li data-per="53" data-title="32,000"></li>
+					<li data-per="16" data-title="10,000"></li>
+					<li data-per="45" data-title="22,000"></li>
+				</ul>
+				<ul data-title="2014">
+					<li data-per="30" data-title="16,000"></li>
+					<li data-per="15" data-title="8,000"></li>
+					<li data-per="15" data-title="8,000"></li>
+				</ul>
+				<ul data-title="2015">
+					<li data-per="37.5" data-title="20,000"></li>
+					<li data-per="22.5" data-title="12,000"></li>
+					<li data-per="15" data-title="8,000"></li>
+				</ul>
+				<ul data-title="2016">
+					<li data-per="66.6" data-title="40,000"></li>
+					<li data-per="30" data-title="18,000"></li>
+					<li data-per="37" data-title="22,000"></li>
+				</ul>
+			</div>
+			<div class="slide-info">
+				<h2>Contributions & Withdrawals</h2>
+				<p>
+					You have $30,000 invested. Lorem ip	sum dolor sit amet, consectetuer adipiscing elit. Donec odio.<br>
+					<span class="square" style="background:#9cbdbe"></span> Contributions
+					<span class="square" style="background:#f79594"></span> Withdrawal
+					<span class="square" style="background:#cbdf8c"></span> Net
+				</p>
+			</div>
+		</div>
+		<div id="return-comparison" class="slide">
+			<div class="chart bar_chart" data-ytitle="Age" data-yvalues="20 / 25 / 30 / 35 / 40 / 45 / 50 / 55 / 60 / 65 / 70 / 75 / 80">
+
+			</div>
+			<div class="slide-info">
+				<h2>Return Comparison</h2>
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.</p>
+			</div>
+		</div>
+	</div>
+	<div id="chart-risks" class="section slider">
+		<div id="risk-return-profile" class="slide">
+			<!-- 
+				the value of data-per changes the rotation of the pointer
+				e.g. 50 it will point to middle, 66.66 will point it in between "moderate" and "good".
+			-->
+			<ul class="chart half_pie_chart" data-per="55">
+				<li data-title="Bad"></li>
+				<li data-title="Moderate"></li>
+				<li data-title="Good"></li>
+			</ul>
+			<div class="slide-info">
+				<h2>Your Risk</h2>
+				<p>Your risk is charactereized as moderate. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.</p>
+			</div>
+		</div>
+		<div id="risk-age-profile" class="slide">
+			<ul class="chart half_pie_chart" data-per="45">
+				<li data-title="Bad"></li>
+				<li data-title="Moderate"></li>
+				<li data-title="Good"></li>
+			</ul>
+			<div class="slide-info">
+				<h2>Risk Age Profile</h2>
+				<p>Your risk is charactereized as moderate. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.</p>
+			</div>
+		</div>
+		<div id="risk-comparison" class="slide">
+			<ul class="chart half_pie_chart" data-per="45">
+				<li data-title="Bad"></li>
+				<li data-title="Moderate"></li>
+				<li data-title="Good"></li>
+			</ul>
+			<div class="slide-info">
+				<h2>Risks Comparison</h2>
+				<p>Your risk is charactereized as moderate. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.</p>
+			</div>
+		</div>
+	</div>
+	<div id="chart-costs" class="section slider">
+		<div id="cost-fees" class="slide">
+			<!-- 
+				data-per = the users value
+				data-total = the total value
+				data-average = the average value
+				data-color = changes the color of the filled circle, can be "green" or "oranges"
+			-->
+			<div class="chart half_circle_chart" data-per="1.8" data-total="2.5" data-average="1" data-color=""><div class="circle"><div class="value"></div></div></div>
+			<div class="slide-info">
+				<h2>Your fees</h2>
+				<p>Your fees are more than the majority of investors. ipsum dolor sit amet, consectetuer.</p>
+			</div>
+		</div>
+		<div id="tax-treatment" class="slide">
+			<div class="chart text">
+	 			<h3>Traditional 401k</h3>
+	 			<ul>
+	 				<li>tax free upfront</li>
+	 				<li>pay tax at withdrawal</li>
+	 			</ul>
+				<h3>Roth 401k</h3>
+				<ul>
+					<li>pay tax upfront</li>
+					<li>savings grow tax free</li>
+					<li>5+ year old account (for people 59.5 years old +) has tax free withdrawal</li>
+				</ul>
+				<h3>Traditional IRA</h3>
+				<ul>
+					<li>tax free upfront</li>
+					<li>pay tax at withdrawal</li>
+					<li>can’t withdraw until 59.5 years old without penalty</li>
+				</ul>
+				<h3>Roth IRA</h3>
+				<ul>
+					<li>pay tax upfront</li>
+					<li>savings grow tax free</li>
+					<li>5+ year old account (for people 59.5 years old +) has tax free withdrawal</li>
+				</ul>
+			</div>
+			<div class="slide-info">
+				<h2>Tax Treatments</h2>
+			</div>
+		</div>
+	</div>
+</main>
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<!-- for offline dev -->
+<!-- <script src="web/jquery.js"></script> -->
+<!-- <script src="web/jquery-migrate.js"></script> -->
+<script src="web/library.js"></script>
+<script src="web/scripts.js"></script>
+
+</body>
+</html>
