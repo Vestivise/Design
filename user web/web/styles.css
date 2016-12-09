@@ -10,6 +10,7 @@
         4.2 CHART BAR
         4.3 CHART RISKS
         4.4 CHART COSTS
+        4.5 ANNOTATION
     5.0 SETTINGS
         5.1 ACCOUNTS
         5.2 FEEDBACKS
@@ -1151,6 +1152,61 @@ button{
         }
 
     /*  4.4 CHART COSTS - END  */
+
+    /*  4.5 ANNOTATION  */
+
+    .annotation{
+        padding:5px 2px 3px 2px;
+        color:inherit;
+        background:rgba(250,250,103,.6);
+        cursor:pointer
+        }
+
+    #annotation{
+        position:fixed;
+        top:0;
+        right:0;
+        width:100%;
+        height:100vh;
+        -webkit-transform:translateX(100%);
+        transform:translateX(100%);
+        opacity:0;
+        z-index:200;
+        transition:.6s
+        }
+
+    #annotation #annotation_ajax{
+        position:fixed;
+        top:0;
+        right:0;
+        height:100vh;
+        width:420px;
+        max-width:90%;
+        overflow-y:scroll;
+        padding:60px;
+        background:#fff;
+        box-shadow:0 0 20px 5px rgba(0,0,0,.1);
+        z-index:210
+        }
+
+    html.annotated{
+        overflow:hidden
+        }
+
+    html.annotated #annotation{
+        opacity:1;
+        -webkit-transform:translateX(0);
+        transform:translateX(0)
+        }
+
+        #annotation_ajax h1{
+            display:inline;
+            margin:0 0 30px;
+            padding:5px 2px 3px 2px;
+            background:rgba(250,250,103,.6)
+            }
+
+    /*  4.5 ANNOTATION - END  */
 
 /*  4.0 DASHBOARD - END  */
 

@@ -83,6 +83,35 @@ $(window).scroll(header_scroll)
 
 /*  DASHBOARD  */
 
+var annotation = $('#annotation'),
+	annotation_ajax = annotation.find('#annotation_ajax')
+
+function annotation_open(e){
+	e.preventDefault();
+	html.addClass('annotated');
+	$.ajax({
+        type:'get',
+        url:$(this).attr('href'),
+        data:$('#annotation_text'),
+		success:function(data){
+			var annotation_text = $(data).find('#annotation_text');
+			annotation_ajax.html(annotation_text);
+			html.addClass('annotated');
+		}
+	});
+}
+$('.annotation').click(annotation_open)
+
+function annotation_close(e){
+    if (!annotation_ajax.is(e.target) && annotation_ajax.has(e.target).length === 0){
+		html.removeClass('annotated');
+		setTimeout(function(){
+			annotation_ajax.empty()
+		},600)
+    }
+}
+annotation.click(annotation_close);
+
 function chart_slider_init(){
 	var chart_slider = $('#chart-slider'),
 		chart_slider_li = chart_slider.find('li');
