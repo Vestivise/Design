@@ -794,11 +794,11 @@ button{
         background:#aaa
         }
 
-        .percentage_chart ul:nth-of-type(even) span{
+        .percentage_chart ul:nth-of-type(even) > span{
             top:-90px
             }
 
-        .percentage_chart ul:nth-of-type(even) span:after{
+        .percentage_chart ul:nth-of-type(even) > span:after{
             height:75px
             }
 
@@ -824,6 +824,15 @@ button{
             .percentage_chart li:nth-of-type(2) span:after{
                 top:-78px;
                 height:75px
+                }
+
+            .percentage_chart ul:nth-of-type(4) li:nth-of-type(2) span{
+                bottom:-120px
+                }
+
+            .percentage_chart ul:nth-of-type(4) li:nth-of-type(2) span:after{
+                top:-108px;
+                height:90px
                 }
 
         .percentage_chart li span h3{
@@ -1016,6 +1025,83 @@ button{
             border:none;
             z-index:55
             }
+
+    .bell_chart{
+        border-bottom:1px solid #eee;
+        border-left:1px solid #eee
+        }
+
+    .bell_chart img{
+        position:relative;
+        z-index:10
+        }
+
+
+    .bell_chart .mark{
+        position:absolute;
+        top:0;
+        height:100%;
+        width:1px;
+        border-left:1px solid #f79594;
+        z-index:20
+        }
+
+    .bell_chart .mark h3{
+        margin:0 0 0 15px
+        }
+
+    .bell_chart .y-title{
+        position:absolute;
+        transform-origin:left top 0;
+        -webkit-transform:rotate(-90deg) translateX(-50%);
+        transform:rotate(-90deg) translateX(-50%);
+        float:left;
+        top:50%;
+        left:-30px
+        }
+
+    .bell_chart .yvalues{
+        position:absolute;
+        width:100%;
+        left:0;
+        margin:0 0 -6px;
+        padding:0 10px;
+        text-align:left;
+        font:10px/20px "Graphik",Helvetica,Arial,sans-serif;
+        color:#999
+        }
+
+    .bell_chart .yvalues hr{
+        position:relative;
+        width:calc(100% + 20px);
+        left:-10px;
+        height:1px;
+        background:#eee;
+        border:none;
+        outline:none
+        }
+
+    .bell_chart .x-title{
+        position:absolute;
+        bottom:-25px;
+        left:-15px;
+        text-align:left
+        }
+
+    .bell_chart .xvalues{
+        position:absolute;
+        top:0;
+        height:100%;
+        width:1px;
+        border-left:1px solid #eee
+        }
+
+    .bell_chart .xvalues h3{
+        position:absolute;
+        bottom:-25px;
+        -webkit-transform:translateX(-50%);
+        transform:translateX(-50%)
+        }
 
     /*  4.3 CHART RISKS - END  */
     

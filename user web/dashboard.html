@@ -51,18 +51,24 @@
 					data-title = the title
 				-->
 				<ul data-per="28" data-title="Cash">
-					<!--
-						child bar's data percentage is in relation to it's parent bar's value. The percentage out of the total value will be automatically calculated through the script.
-					-->
-					<li data-per="50" data-title="Cash 1">
-					<li data-per="50" data-title="Cash 2">
-				</ul>
-				<ul data-per="37" data-title="Bonds"></ul>
-				<ul data-per="26" data-title="Stocks">
-					<li data-per="70" data-title="Stock 1">
-					<li data-per="30" data-title="Stock 2">
-				</ul>
-				<ul data-per="9" data-title="Others"></ul>
+                    <!--
+                        child bar's data percentage is in relation to it's parent bar's value. The percentage out of the total value will be automatically calculated through the script.
+                    -->
+                    <li data-per="50" data-title="Cash 1">
+                    <li data-per="50" data-title="Cash 2">
+                </ul>
+                <ul data-per="37" data-title="Bonds">
+                    <li data-per="70" data-title="Stock 1">
+                    <li data-per="30" data-title="Stock 2">
+                </ul>
+                <ul data-per="26" data-title="Stocks">
+                    <li data-per="70" data-title="Stock 1">
+                    <li data-per="30" data-title="Stock 2">
+                </ul>
+                <ul data-per="9" data-title="Others">
+                    <li data-per="70" data-title="Stock 1">
+                    <li data-per="30" data-title="Stock 2">
+                </ul>
 			</div>
 			<div class="slide-info">
 				<h2>Your Assets</h2>
@@ -243,11 +249,17 @@
 			</div>
 		</div>
 		<div id="risk-comparison" class="slide">
-			<ul class="chart half_pie_chart" data-per="45">
-				<li data-title="Bad"></li>
-				<li data-title="Moderate"></li>
-				<li data-title="Good"></li>
-			</ul>
+
+			<!-- 
+				data-per = percentage of where the user lands on a scale of 100
+				data-ytitle = y axis title
+				data-yvalues = y axis values, separate by " / "
+				data-xtitle = x acis title
+				data-xvalues = x axis values, separate by " / "
+			-->
+
+			<div class="chart bell_chart" data-per="30" data-ytitle="Total Users" data-yvalues="" data-xtitle="Risk" data-xvalues="Low / Medium / High"><img src="img/bell-curve.svg"></div>
+
 			<div class="slide-info">
 				<h2>Risks Comparison</h2>
 				<p>Your risk is charactereized as moderate. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.</p>

@@ -155,14 +155,14 @@ $('.slider').slick({
 function percentage_charts(){
 	var chart = $(this),
 		chart_section = chart.children(),
-		chart_percentage = chart.attr('data-per'),
+		chart_percentage = (Number(chart.attr('data-per'))).toFixed(1),
 		chart_title = chart.attr('data-title');
 	chart.css('width',chart_percentage + '%').append('<span><h3>' + chart_percentage + '% ' + chart_title + '</h3>');
 	if(chart_section.length > 0){
 		chart_section.each(function(){
 			var section = $(this),
 				section_percentage = section.attr('data-per'),
-				section_percentage_total = section_percentage/100*chart_percentage
+				section_percentage_total = (section_percentage/100*chart_percentage).toFixed(1);
 				section_title = section.attr('data-title');
 			section.css('width',section_percentage + '%').append('<span><h3>' + section_percentage_total + '% ' + section_title + '</h3>');
 		})
@@ -210,7 +210,7 @@ $('.bar_chart').each(bar_charts);
 function half_pie_chart(){
 	var chart = $(this);
 		chart_value = chart.attr('data-per'),
-		chart_value_deg = (180*(chart_value/100)).toFixed(1)
+		chart_value_deg = (180*(chart_value/100)).toFixed(1);
 
 	chart.append('<hr style="-webkit-transform:translate(-50%,-50%) rotate(' + chart_value_deg + 'deg);transform:translate(-50%,-50%) rotate(' + chart_value_deg + 'deg);">');
 
@@ -235,6 +235,51 @@ function half_circle_chart(){
 	chart.find('.value').append('<h3>' + chart_value + '%</h3>')
 }
 $('.half_circle_chart').each(half_circle_chart)
+
+function bell_chart(){
+	var chart = $(this),
+		chart_value = chart.attr('data-per'),
+		chart_ytitle = chart.attr('data-ytitle'),
+		chart_yvalues = chart.attr('data-yvalues'),
+		chart_xtitle = chart.attr('data-xtitle'),
+		chart_xvalues = chart.attr('data-xvalues');
+
+	chart.append('<div class="mark" style="left:' + chart_value + '%"><h3>' + chart_value + '%</h3></div>')
+
+	function build_background(){
+
+		if(chart_ytitle){
+			chart.append('<h3 class="y-title">' + chart_ytitle + '</h3>');
+		}
+		if(chart_yvalues){
+			var chart_yvalues_array = chart_yvalues.split(" / "),
+				chart_yvalues_array_length = chart_yvalues_array.length,
+				count = 0;
+			chart_yvalues_array.forEach(function(value){
+				count++;
+				var position_bottom = (100/chart_yvalues_array_length)*count;
+				chart.append('<span class="yvalues" style="bottom:' + position_bottom + '%">' + value + '<hr></span>')
+			})
+		}
+
+		if(chart_xtitle){
+			chart.append('<h3 class="x-title">' + chart_xtitle + '</h3>');
+		}
+		if(chart_xvalues){
+			var chart_xvalues_array = chart_xvalues.split(" / "),
+				chart_xvalues_array_length = chart_xvalues_array.length,
+				count = 0;
+			chart_xvalues_array.forEach(function(value){
+				count++;
+				var position_left = (100/(chart_xvalues_array_length + 1))*count;
+				chart.append('<span class="xvalues" style="left:' + position_left + '%"><h3>' + value + '</h3></span>')
+			})
+		}
+	}
+	build_background();
+
+}
+$('.bell_chart').each(bell_chart)
 
 /*  DASHBOARD - END  */
 
