@@ -158,7 +158,7 @@ function percentage_charts(){
 		chart_percentage = (Number(chart.attr('data-per'))).toFixed(1),
 		chart_title = chart.attr('data-title');
 	chart.css('width',chart_percentage + '%').append('<span><h3>' + chart_percentage + '% ' + chart_title + '</h3>');
-	if(chart_section.length > 0){
+	if(chart_section.length > 0 && chart_percentage > 1){
 		chart_section.each(function(){
 			var section = $(this),
 				section_percentage = section.attr('data-per'),
