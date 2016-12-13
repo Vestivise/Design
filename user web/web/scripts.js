@@ -281,6 +281,49 @@ function bell_chart(){
 }
 $('.bell_chart').each(bell_chart)
 
+function line_chart(){
+	var chart = $(this),
+		chart_ytitle = chart.attr('data-ytitle'),
+		chart_xvalyues_array = chart.attr('data-xvalues').split(' / '),
+		chart_xvalues1_array = chart.attr('data-xvalues-1').split(' / '),
+		chart_xvalues2_array = chart.attr('data-xvalues-2').split(' / '),
+		chart_xvalues3_array = chart.attr('data-xvalues-3').split(' / '),
+		chart_xvalues4_array = chart.attr('data-xvalues-4').split(' / '),
+		chart_xvalues5_array = chart.attr('data-xvalues-5').split(' / '),
+		chart_xvalues6_array = chart.attr('data-xvalues-6').split(' / '),
+		data = {
+			labels:chart_xvalyues_array,
+			series:[
+				chart_xvalues1_array,
+				chart_xvalues2_array,
+				chart_xvalues3_array,
+				chart_xvalues4_array,
+				chart_xvalues5_array,
+				chart_xvalues6_array
+			]
+		},
+		options = {
+		height:'360px',
+		showPoint:true,
+		axisX:{
+			labelInterpolationFnc:function(value){
+				return value + ' ' + chart_ytitle;
+			}
+		},
+		axisY:{
+			showLabel:true,
+			labelInterpolationFnc:function(value){
+				while(/(\d+)(\d{3})/.test(value.toString())){
+					value = value.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2')
+				}
+				return '$' + value;
+			}
+		}
+	};
+	new Chartist.Line('.line_chart',data,options);
+}
+$('.line_chart').each(line_chart)
+
 /*  DASHBOARD - END  */
 
 /*  SETTINGS  */
