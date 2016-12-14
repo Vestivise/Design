@@ -305,6 +305,7 @@ function line_chart(){
 		options = {
 		height:'360px',
 		showPoint:true,
+		showArea:true,
 		axisX:{
 			labelInterpolationFnc:function(value){
 				return value + ' ' + chart_ytitle;
